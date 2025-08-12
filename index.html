@@ -5,50 +5,77 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Three-Piece Shop — Gallery & Video</title>
   <style>
-    :root{
-      --bg:#f5f8fb; --card:#fff; --accent:#0d6efd; --accent2:#198754;
-      --muted:#6b7280; --radius:12px; --shadow:0 8px 28px rgba(11,22,40,0.06);
+    :root {
+      --bg: #f5f8fb;
+      --card: #fff;
+      --accent: #0d6efd;
+      --accent2: #198754;
+      --muted: #6b7280;
+      --radius: 12px;
+      --shadow: 0 8px 28px rgba(11, 22, 40, 0.06);
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family: "Inter", "Noto Sans Bengali", Arial, sans-serif;background:var(--bg);color:#0b1220}
-    .wrap{max-width:1100px;margin:20px auto;padding:16px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-    h1{margin:0;font-size:20px}
-    .sub{color:var(--muted);font-size:13px;margin-top:4px}
-    .actions{display:flex;gap:8px}
-    button{border:0;cursor:pointer;border-radius:10px;padding:10px 14px;font-weight:700}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff}
-    .btn-ghost{background:transparent;border:1px solid rgba(13,110,253,0.12);color:var(--accent)}
-    .card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
-    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-    .product{border-radius:10px;overflow:hidden;border:1px solid #eef6fa;background:#fff;display:flex;flex-direction:column;transition:transform .12s}
-    .product:hover{transform:translateY(-6px)}
-    .product img{width:100%;height:170px;object-fit:cover;background:#eef6f9}
-    .p-body{padding:12px;flex:1;display:flex;flex-direction:column}
-    .p-title{font-weight:700;margin:0 0 6px}
-    .p-price{color:var(--accent);font-weight:800;margin-bottom:8px}
-    .p-actions{display:flex;gap:8px;margin-top:auto}
-    .small{padding:8px 10px;border-radius:8px;font-size:13px}
-    .small.secondary{background:#f3fbfd;color:var(--accent);border:1px solid rgba(6,142,173,0.06)}
-    label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
-    input, textarea, select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef3;font-size:14px}
-    .modal-back{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;padding:16px;z-index:60}
-    .modal{width:100%;max-width:820px;background:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(2,6,23,0.18)}
-    .close-x{background:transparent;border:none;font-size:20px;position:absolute;right:18px;top:18px;cursor:pointer}
-    .gallery{display:flex;gap:8px;align-items:center}
-    .thumb{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid #eef6f9}
-    .main-media{width:100%;height:360px;background:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    
-    /* *** THIS IS THE FIX *** */
-    .main-media img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Changed from 'cover' to 'contain' */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Noto Sans Bengali", Arial, sans-serif;
+      background: var(--bg);
+      color: #0b1220;
     }
-    
-    .nav-btn{background:rgba(255,255,255,0.8);border-radius:8px;padding:8px;border:0;cursor:pointer}
-    @media (max-width:720px){ .product img{height:140px} .main-media{height:220px} }
-    .muted{color:var(--muted);font-size:13px}
+    .wrap { max-width: 1100px; margin: 20px auto; padding: 16px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 20px; }
+    .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .actions { display: flex; gap: 8px; }
+    button { border: 0; cursor: pointer; border-radius: 10px; padding: 10px 14px; font-weight: 700; }
+    .btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #fff; }
+    .btn-ghost { background: transparent; border: 1px solid rgba(13, 110, 253, 0.12); color: var(--accent); }
+    .card { background: var(--card); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); }
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .product {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #eef6fa;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: transform .12s;
+    }
+    .product:hover { transform: translateY(-6px); }
+    .product img { width: 100%; height: 200px; object-fit: cover; background: #eef6f9; }
+    .p-body { padding: 12px; flex: 1; display: flex; flex-direction: column; }
+    .p-title { font-weight: 700; margin: 0 0 6px; }
+    .p-price { color: var(--accent); font-weight: 800; margin-bottom: 8px; }
+    .p-actions { display: flex; gap: 8px; margin-top: auto; }
+    .small { padding: 8px 10px; border-radius: 8px; font-size: 13px; }
+    .small.secondary { background: #f3fbfd; color: var(--accent); border: 1px solid rgba(6, 142, 173, 0.06); }
+    label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; }
+    input, textarea, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #e6eef3; font-size: 14px; }
+    .modal-back {
+      position: fixed; inset: 0; background: rgba(2, 6, 23, 0.45);
+      display: none; align-items: center; justify-content: center;
+      padding: 16px; z-index: 60;
+    }
+    .modal {
+      width: 100%; max-width: 820px; background: #fff; padding: 18px;
+      border-radius: 12px; box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
+    }
+    .close-x {
+      background: transparent; border: none; font-size: 20px;
+      position: absolute; right: 18px; top: 18px; cursor: pointer;
+    }
+    .gallery { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .thumb { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid #eef6f9; cursor: pointer; }
+    .main-media {
+      width: 100%; height: 360px; background: #000; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .main-media img { width: 100%; height: 100%; object-fit: contain; }
+    .nav-btn { background: rgba(255, 255, 255, 0.8); border-radius: 8px; padding: 8px; border: 0; cursor: pointer; }
+    .muted { color: var(--muted); font-size: 13px; }
+    @media (max-width: 720px) {
+      .product img { height: 160px; }
+      .main-media { height: 220px; }
+    }
   </style>
 </head>
 <body>
@@ -56,7 +83,7 @@
     <header>
       <div>
         <h1>Three-Piece Shop</h1>
-        <div class="sub">Details এ multiple images ও video + Commission View আলাদাভাবে</div>
+        <div class="sub">সকল ডেটা এখন কেন্দ্রীয়ভাবে হোস্ট করা</div>
       </div>
       <div class="actions">
         <button id="commissionBtn" class="btn-ghost">Commission View</button>
@@ -67,14 +94,14 @@
     <main class="card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
         <h3 style="margin:0">Products</h3>
-        <div class="muted">Local demo — সব ডেটা আপনার ব্রাউজারে</div>
+        <div class="muted">ডেটা সোর্স: data.json</div>
       </div>
-
-      <div id="productsGrid" class="products"></div>
+      <div id="productsGrid" class="products">
+        <p class="muted">প্রোডাক্ট লোড হচ্ছে...</p>
+      </div>
     </main>
   </div>
 
-  <!-- modal -->
   <div id="modalRoot" class="modal-back">
     <div class="modal" role="dialog" aria-modal="true" id="modalBox" style="position:relative">
       <button class="close-x" id="modalClose">&times;</button>
@@ -83,148 +110,331 @@
   </div>
 
 <script>
-  // storage keys
-  var KEY='threepiece_gallery_v1', PW_KEY='threepiece_gallery_pw';
-  function defaultState(){
-    return {
-      products:[
-        {id:'p'+Date.now(), name:'Royal Black 3-piece', images:['https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-1.jpg', 'https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-2.jpg'], imageMain:'https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-1.jpg', price:2500, commissionPercent:10, video:'https://www.youtube.com/watch?v=ysz5S6PUM-U', videoType:'youtube'},
-        {id:'p'+(Date.now()+1), name:'Classic Navy 3-piece', images:['https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-3.jpg'], imageMain:'https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-3.jpg', price:2200, commissionPercent:8, video:'', videoType:''}
-      ],
-      sales:[]
-    };
+  // Global state and configuration
+  const PW_KEY = 'threepiece_gallery_pw';
+  const SALES_KEY = 'threepiece_sales_v1';
+  let state = { products: [], sales: [] };
+  let isAdmin = false;
+
+  // --- Helper Functions ---
+  const $ = (id) => document.getElementById(id);
+  const money = (x) => `৳${Number(x || 0).toFixed(2)}`;
+  const findProduct = (id) => state.products.find(p => p.id === id);
+  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+  // --- Modal Controls ---
+  const modalRoot = $('modalRoot');
+  const modalContent = $('modalContent');
+  const modalClose = $('modalClose');
+
+  function openModal(node) {
+    modalRoot.style.display = 'flex';
+    modalContent.innerHTML = '';
+    modalContent.appendChild(node);
   }
-  function load(){ var r=localStorage.getItem(KEY); if(!r){ var s=defaultState(); localStorage.setItem(KEY,JSON.stringify(s)); if(!localStorage.getItem(PW_KEY)) localStorage.setItem(PW_KEY,'admin123'); return s;} return JSON.parse(r); }
-  function save(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
-  var state=load(), isAdmin=false;
 
-  // helpers and modal controls (Unchanged)
-  function $(id){ return document.getElementById(id); }
-  function money(x){ return '৳' + Number(x||0).toFixed(2); }
-  function findP(id){ return state.products.find(function(p){ return p.id===id; }); }
-  function escapeHtml(s){ return String(s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
-  var modalRoot=$('modalRoot'), modalContent=$('modalContent'), modalClose=$('modalClose');
-  function openModal(nodeOrHtml){ modalRoot.style.display='flex'; if(typeof nodeOrHtml==='string') modalContent.innerHTML=nodeOrHtml; else { modalContent.innerHTML=''; modalContent.appendChild(nodeOrHtml); } }
-  function closeModal(){ modalRoot.style.display='none'; modalContent.innerHTML=''; }
-  modalClose.onclick = closeModal; modalRoot.onclick = function(e){ if(e.target===modalRoot) closeModal(); };
-
-  // render products (Unchanged)
-  function renderProducts(){
-    var wrap=$('productsGrid'); wrap.innerHTML='';
-    if(state.products.length===0){ wrap.innerHTML='<div class="muted">কোনো প্রোডাক্ট নেই — Admin লগইন করে যোগ করুন</div>'; return; }
-    state.products.forEach(function(p){
-      var card=document.createElement('div'); card.className='product';
-      var img=document.createElement('img'); img.src = p.imageMain || (p.images && p.images[0]) || 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="100%" height="100%" fill="#eef6f9"/><text x="50%" y="50%" font-size="20" text-anchor="middle" fill="#99b3bf">No Image</text></svg>');
-      var body=document.createElement('div'); body.className='p-body';
-      var title=document.createElement('div'); title.className='p-title'; title.textContent = p.name;
-      var price=document.createElement('div'); price.className='p-price'; price.textContent = money(p.price);
-      var actions=document.createElement('div'); actions.className='p-actions';
-      var detailsBtn=document.createElement('button'); detailsBtn.className='small secondary'; detailsBtn.textContent='Details';
-      detailsBtn.onclick = function(){ showDetails(p.id); };
-      actions.appendChild(detailsBtn);
-      if(isAdmin){
-        var edit=document.createElement('button'); edit.className='small'; edit.textContent='Edit';
-        edit.onclick = function(){ openModal(productForm(p)); };
-        var del=document.createElement('button'); del.className='small secondary'; del.textContent='Delete';
-        del.onclick = function(){ if(confirm('প্রোডাক্ট মুছবেন?')){ state.products = state.products.filter(function(x){ return x.id!==p.id }); save(state); renderProducts(); openModal(adminPanel()); } };
-        actions.appendChild(edit); actions.appendChild(del);
-      }
-      body.appendChild(title); body.appendChild(price); body.appendChild(actions);
-      card.appendChild(img); card.appendChild(body);
-      wrap.appendChild(card);
-    });
+  function closeModal() {
+    modalRoot.style.display = 'none';
+    modalContent.innerHTML = '';
   }
-  
-  // Commission, Admin Login, Panel etc. (Unchanged functions)
-  $('commissionBtn').addEventListener('click', function(){ var node=document.createElement('div'); var h=document.createElement('h3'); h.textContent='Commission View'; node.appendChild(h); node.appendChild(document.createElement('hr')); if(state.products.length===0){ node.appendChild(createMuted('কোনো প্রোডাক্ট নেই')); openModal(node); return; } var grid=document.createElement('div'); grid.style.display='grid'; grid.style.gap='10px'; state.products.forEach(function(p){ var r=document.createElement('div'); r.className='card'; r.style.padding='10px'; var name=document.createElement('div'); name.innerHTML = '<strong>' + escapeHtml(p.name) + '</strong>'; var price=document.createElement('div'); price.className='muted'; price.textContent = 'Price: ' + money(p.price || 0); var percent = p.commissionPercent != null ? Number(p.commissionPercent) : 0; var comm = +((p.price||0) * percent / 100); var line=document.createElement('div'); line.style.marginTop='6px'; line.innerHTML = 'Commission: ' + percent + '% — <strong>' + money(comm) + '</strong>'; r.appendChild(name); r.appendChild(price); r.appendChild(line); grid.appendChild(r); }); node.appendChild(grid); openModal(node); });
-  function createMuted(text){ var d=document.createElement('div'); d.className='muted'; d.style.marginTop='8px'; d.textContent=text; return d; }
-  $('adminBtn').addEventListener('click', showAdminLogin);
-  function showAdminLogin(){ var node=document.createElement('div'); var h=document.createElement('h3'); h.textContent='Admin Login'; var f=document.createElement('div'); f.style.marginTop='8px'; f.innerHTML = '<label>পাসওয়ার্ড</label><input id="pwInput" type="password" placeholder="Enter admin password"/>'; var btn=document.createElement('button'); btn.textContent='Login'; btn.className='btn-primary'; btn.style.marginTop='12px'; btn.onclick=function(){ var v=$('pwInput').value||''; var real = localStorage.getItem(PW_KEY) || 'admin123'; if(v===real){ isAdmin=true; closeModal(); onAdminEnter(); } else alert('পাসওয়ার্ড সঠিক নয়'); }; node.appendChild(h); node.appendChild(f); node.appendChild(btn); openModal(node); setTimeout(function(){ $('pwInput').focus(); }, 100); }
-  function onAdminEnter(){ renderProducts(); openModal(adminPanel()); }
-  function adminPanel(){ var root=document.createElement('div'); var h=document.createElement('h3'); h.textContent='Admin Panel'; root.appendChild(h); root.appendChild(document.createElement('hr')); var bar=document.createElement('div'); bar.style.display='flex'; bar.style.gap='8px'; bar.style.flexWrap='wrap'; var addBtn=document.createElement('button'); addBtn.textContent='Add Product'; addBtn.className='btn-primary small'; addBtn.onclick=function(){ openModal(productForm()); }; var dashboardBtn=document.createElement('button'); dashboardBtn.textContent='Dashboard & Sales'; dashboardBtn.className='small secondary'; dashboardBtn.onclick=function(){ openModal(dashboardView()); }; var changePw=document.createElement('button'); changePw.textContent='Change Password'; changePw.className='small'; changePw.onclick=function(){ changePassword(); }; var logout=document.createElement('button'); logout.textContent='Logout Admin'; logout.className='small secondary'; logout.onclick=function(){ if(confirm('Admin লগআউট করবেন?')){ isAdmin=false; closeModal(); renderProducts(); } }; bar.appendChild(addBtn); bar.appendChild(dashboardBtn); bar.appendChild(changePw); bar.appendChild(logout); root.appendChild(bar); var list=document.createElement('div'); list.style.marginTop='12px'; state.products.forEach(function(p){ var row=document.createElement('div'); row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.padding='8px 0'; row.style.borderBottom='1px dashed #eef6f9'; var left=document.createElement('div'); left.innerHTML = '<strong>' + escapeHtml(p.name) + '</strong><div class="muted">Price: '+ money(p.price) + ' • Comm: ' + (p.commissionPercent!=null? p.commissionPercent+'%':'Not set') + '</div>'; var right=document.createElement('div'); right.style.display='flex'; right.style.gap='8px'; var e=document.createElement('button'); e.className='small'; e.textContent='Edit'; e.onclick=function(){ openModal(productForm(p)); }; var d=document.createElement('button'); d.className='small secondary'; d.textContent='Delete'; d.onclick=function(){ if(confirm('Delete product?')){ state.products=state.products.filter(function(x){ return x.id!==p.id }); save(state); renderProducts(); openModal(adminPanel()); } }; right.appendChild(e); right.appendChild(d); row.appendChild(left); row.appendChild(right); list.appendChild(row); }); root.appendChild(list); return root; }
-  function changePassword(){ var cur=prompt('Current password:'); if(cur !== (localStorage.getItem(PW_KEY) || 'admin123')){ alert('Current password ভুল'); return; } var np=prompt('New password (min 4 char):'); if(!np || np.length<4){ alert('Invalid'); return; } localStorage.setItem(PW_KEY,np); alert('Password updated'); }
 
-  function productForm(prod){
-    var editing = !!prod;
-    var wrapper=document.createElement('div');
-    var title=document.createElement('h3'); title.textContent = editing ? 'Edit Product' : 'Add Product'; wrapper.appendChild(title); wrapper.appendChild(document.createElement('hr'));
-    var form=document.createElement('div');
-    form.innerHTML =
-      '<label>Product Name</label><input id="f_name" type="text" />' +
-      '<label style="margin-top:8px">Price (৳)</label><input id="f_price" type="number" />' +
-      '<label style="margin-top:8px">Commission (%)</label><input id="f_comm" type="number" placeholder="e.g., 10" />' +
-      '<hr style="margin:12px 0"/>' +
-      '<div>' +
-        '<p class="muted" style="margin-top:0; margin-bottom:8px;"><b>ছবি যোগ করার নিয়ম:</b><br>১. ছবিটি GitHub বা অন্য কোনো ইমেজ হোস্টিং সাইটে আপলোড করুন।<br>২. ছবির সরাসরি URL টি কপি করে নিচের বক্সে পেস্ট করুন এবং "Add Image" বাটনে ক্লিক করুন।</p>' +
-        '<label>Image URL</label>' +
-        '<div style="display:flex;gap:8px;"><input id="f_img_url" type="text" placeholder="Paste image URL here"/><button id="addImgUrlBtn" class="small secondary">Add Image</button></div>' +
-      '</div>' +
-      '<div id="imagesPreview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px"></div>' +
-      '<hr style="margin:12px 0"/>' +
-      '<label>Video (YouTube or direct URL)</label><input id="f_video" type="text" placeholder="Paste YouTube link or direct video URL" />'
-    ;
-    wrapper.appendChild(form);
-    var btn=document.createElement('button'); btn.textContent = editing ? 'Save Changes' : 'Add Product'; btn.className='btn-primary'; btn.style.marginTop='12px';
-    btn.onclick = function(){
-      var name = wrapper.querySelector('#f_name').value.trim();
-      var price = parseFloat(wrapper.querySelector('#f_price').value);
-      var commVal = wrapper.querySelector('#f_comm').value.trim();
-      var comm = commVal === '' ? null : Number(commVal);
-      if(!name || isNaN(price)){ alert('নাম ও সঠিক দাম দিন'); return; }
-      var imgs = [];
-      wrapper.querySelectorAll('#imagesPreview img').forEach(function(im){ imgs.push(im.dataset.src); });
-      var video = wrapper.querySelector('#f_video').value.trim();
-      var videoType = detectVideoType(video);
-      if(editing){
-        prod.name = name; prod.price = price; prod.commissionPercent = comm;
-        prod.images = imgs; prod.imageMain = imgs.length > 0 ? imgs[0] : ''; prod.video = video; prod.videoType = videoType;
-      } else {
-        var id='p'+Date.now();
-        state.products.push({id:id,name:name,price:price,commissionPercent:comm,images:imgs,imageMain:(imgs[0]||''),video:video,videoType:videoType});
-      }
-      save(state); closeModal(); renderProducts();
-    };
-    wrapper.appendChild(btn);
-    setTimeout(function(){
-      if(editing){
-        wrapper.querySelector('#f_name').value = prod.name||'';
-        wrapper.querySelector('#f_price').value = prod.price||'';
-        wrapper.querySelector('#f_comm').value = prod.commissionPercent != null ? prod.commissionPercent : '';
-        wrapper.querySelector('#f_video').value = prod.video || '';
-        var prev = wrapper.querySelector('#imagesPreview');
-        prev.innerHTML='';
-        (prod.images || []).forEach(function(src){ addPreviewImage(src, prev); });
-      }
-    },0);
-    wrapper.querySelector('#addImgUrlBtn').addEventListener('click', function(e){
-      e.preventDefault();
-      var url = wrapper.querySelector('#f_img_url').value.trim();
-      if(!url){ alert('URL দিন'); return; }
-      if(!url.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) && !url.startsWith('https://')){
-          alert('অনুগ্রহ করে একটি সঠিক ইমেজ URL দিন।');
-          return;
-      }
-      addPreviewImage(url, wrapper.querySelector('#imagesPreview'));
-      wrapper.querySelector('#f_img_url').value='';
-    });
-    function addPreviewImage(src, parent){
-      var imgEl = document.createElement('img'); imgEl.src = src; imgEl.className='thumb'; imgEl.dataset.src = src;
-      imgEl.title = 'Click to remove'; imgEl.style.cursor='pointer';
-      imgEl.onclick = function(){ if(confirm('ছবি মুছবেন?')) imgEl.remove(); };
-      parent.appendChild(imgEl);
+  modalClose.onclick = closeModal;
+  modalRoot.onclick = (e) => {
+    if (e.target === modalRoot) closeModal();
+  };
+
+  // --- Core Application Logic ---
+
+  /**
+   * Fetches product data from the central data.json file.
+   */
+  async function loadDataAndInitialize() {
+    try {
+      const response = await fetch('data.json');
+      if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
+      
+      const data = await response.json();
+      state.products = data.products.map(p => ({
+          ...p,
+          imageMain: p.images && p.images.length > 0 ? p.images[0] : '',
+          videoType: detectVideoType(p.video)
+      }));
+      
+      loadSalesFromStorage(); // Load sales data from localStorage
+      renderProducts();
+    } catch (error) {
+      console.error('Failed to load product data:', error);
+      $('productsGrid').innerHTML = `<p class="muted">Error: প্রোডাক্ট লোড করা সম্ভব হয়নি।</p>`;
     }
-    return wrapper;
   }
   
-  function detectVideoType(url){ if(!url) return ''; try{ if(url.indexOf('youtube.com')>-1 || url.indexOf('youtu.be')>-1) return 'youtube'; if(url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) return 'direct'; }catch(e){} return 'direct'; }
-  function showDetails(id){ var p=findP(id); if(!p) return; var node=document.createElement('div'); var h=document.createElement('h3'); h.textContent = p.name; node.appendChild(h); node.appendChild(document.createElement('hr')); var mainDiv=document.createElement('div'); mainDiv.className='main-media'; var mediaIndex = 0; var mediaList = []; (p.images || []).forEach(function(i){ if(i) mediaList.push({type:'image', src:i}); }); if(p.video) mediaList.push({type:'video', src:p.video, vtype:p.videoType}); if(mediaList.length===0){ mainDiv.innerHTML = '<div class="muted">কোনো মিডিয়া নেই</div>'; } else { renderMainMedia(); } var thumbsDiv=document.createElement('div'); thumbsDiv.className='gallery'; thumbsDiv.style.flexWrap='wrap'; mediaList.forEach(function(m, idx){ var t = document.createElement('img'); t.className='thumb'; t.style.width='84px'; t.style.height='84px'; t.style.objectFit='cover'; if(m.type==='image') t.src = m.src; else if(m.type==='video') { t.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200"><rect width="100%" height="100%" fill="#000"/><text x="50%" y="50%" fill="#fff" font-size="24" text-anchor="middle" dy=".3em">▶</text><text x="50%" y="70%" fill="#fff" font-size="14" text-anchor="middle" dy=".3em">VIDEO</text></svg>'); } t.style.cursor='pointer'; t.onclick = function(){ mediaIndex = idx; renderMainMedia(); highlightThumb(); }; thumbsDiv.appendChild(t); }); function highlightThumb(){ thumbsDiv.querySelectorAll('.thumb').forEach((thumb, idx) => { thumb.style.border = idx === mediaIndex ? '2px solid var(--accent)' : '1px solid #eef6f9'; }); } var navWrap=document.createElement('div'); navWrap.style.display='flex'; navWrap.style.justifyContent='space-between'; navWrap.style.alignItems='center'; navWrap.style.marginTop='8px'; var prevBtn=document.createElement('button'); prevBtn.className='nav-btn'; prevBtn.textContent='◀ Prev'; prevBtn.onclick=function(){ if(mediaList.length===0) return; mediaIndex = (mediaIndex-1+mediaList.length)%mediaList.length; renderMainMedia(); highlightThumb(); }; var nextBtn=document.createElement('button'); nextBtn.className='nav-btn'; nextBtn.textContent='Next ▶'; nextBtn.onclick=function(){ if(mediaList.length===0) return; mediaIndex = (mediaIndex+1)%mediaList.length; renderMainMedia(); highlightThumb(); }; navWrap.appendChild(prevBtn); navWrap.appendChild(nextBtn); function renderMainMedia(){ mainDiv.innerHTML=''; var cur = mediaList[mediaIndex]; if(!cur){ mainDiv.innerHTML='<div class="muted">No media</div>'; return; } if(cur.type==='image'){ var im=document.createElement('img'); im.src=cur.src; mainDiv.appendChild(im); } else if(cur.type==='video'){ if(detectVideoType(cur.src) === 'youtube'){ var vidId = extractYouTubeID(cur.src); var iframe=document.createElement('iframe'); iframe.width='100%'; iframe.height='100%'; iframe.src='https://www.youtube.com/embed/' + vidId + '?rel=0&autoplay=1'; iframe.frameBorder=0; iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'; iframe.allowFullscreen=true; mainDiv.appendChild(iframe); } else { var v=document.createElement('video'); v.controls=true; v.autoplay=true; v.src=cur.src; v.style.width='100%'; v.style.height='100%'; v.style.objectFit='contain'; mainDiv.appendChild(v); } } } if(mediaList.length > 0) highlightThumb(); node.appendChild(mainDiv); if(mediaList.length > 1) node.appendChild(navWrap); node.appendChild(thumbsDiv); var info=document.createElement('div'); info.style.marginTop='12px'; info.innerHTML = '<div style="font-size:20px; font-weight:bold; color: var(--accent);">' + money(p.price) +'</div>'; if(isAdmin){ var sellBtn=document.createElement('button'); sellBtn.textContent='Sell (simulate)'; sellBtn.className='btn-primary'; sellBtn.style.marginTop='8px'; sellBtn.onclick = function(){ simulateSale(p.id); closeModal(); }; info.appendChild(sellBtn); } node.appendChild(info); openModal(node); }
-  function extractYouTubeID(url){ if(!url) return ''; var m = url.match(/(?:v=|\/embed\/|youtu\.be\/|\/v\/|watch\?v=|\&v=)([A-Za-z0-9_\-]{11})/); return m ? m[1] : null; }
-  function simulateSale(pid){ var p=findP(pid); if(!p) return alert('Product not found'); var percent = p.commissionPercent != null ? Number(p.commissionPercent) : 0; var comm = +(p.price * percent / 100); var sale = { id:'s'+Date.now(), productId:p.id, productName:p.name, price:p.price, commissionPercent:percent, commission:comm, when:Date.now() }; state.sales.push(sale); save(state); alert('Sale recorded — Commission: ' + money(comm) + ' ('+percent+'%)'); }
-  function dashboardView(){ var wrap=document.createElement('div'); var h=document.createElement('h3'); h.textContent='Dashboard & Sales'; wrap.appendChild(h); wrap.appendChild(document.createElement('hr')); var totalP=state.products.length, totalS=state.sales.length, rev=state.sales.reduce(function(a,s){return a + (s.price||0);},0); var totalComm = state.sales.reduce(function(a,s){return a + (s.commission||0);},0); var stats=document.createElement('div'); stats.style.display='grid'; stats.style.gridTemplateColumns='repeat(auto-fit, minmax(140px, 1fr))'; stats.style.gap='12px'; stats.innerHTML = '<div><strong>'+ totalP +'</strong><div class="muted">Products</div></div>' + '<div><strong>'+ totalS +'</strong><div class="muted">Sales</div></div>' + '<div><strong>'+ money(rev) +'</strong><div class="muted">Total Revenue</div></div>' + '<div><strong>'+ money(totalComm) +'</strong><div class="muted">Total Commission</div></div>'; wrap.appendChild(stats); wrap.appendChild(document.createElement('hr')); var list=document.createElement('div'); if(state.sales.length===0) list.appendChild(createMuted('কোনো বিক্রয় রেকর্ড নেই')); else state.sales.slice().reverse().forEach(function(s){ var r=document.createElement('div'); r.style.padding='8px 0'; r.style.borderBottom='1px dashed #eef6f9'; r.innerHTML = '<strong>' + escapeHtml(s.productName) + '</strong> — ' + money(s.price) + '<div class="muted">Commission: ' + money(s.commission) + ' (' + s.commissionPercent + '%) • ' + (new Date(s.when)).toLocaleString() + '</div>'; list.appendChild(r); }); wrap.appendChild(list); return wrap; }
+  /**
+   * Renders all products on the main page.
+   */
+  function renderProducts() {
+    const grid = $('productsGrid');
+    grid.innerHTML = '';
 
-  // init and shortcuts (Unchanged)
-  renderProducts();
-  document.addEventListener('keydown', function(e){ if((e.key==='A' || e.key==='a') && !isAdmin && modalRoot.style.display==='none') showAdminLogin(); });
+    if (state.products.length === 0) {
+      grid.innerHTML = `<p class="muted">কোনো প্রোডাক্ট পাওয়া যায়নি।</p>`;
+      return;
+    }
+
+    state.products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product';
+      card.innerHTML = `
+        <img src="${p.imageMain || 'https://via.placeholder.com/300x200/eef6f9/99b3bf?text=No+Image'}" alt="${escapeHtml(p.name)}">
+        <div class="p-body">
+          <div class="p-title">${escapeHtml(p.name)}</div>
+          <div class="p-price">${money(p.price)}</div>
+          <div class="p-actions">
+            <button class="small secondary details-btn" data-id="${p.id}">Details</button>
+            ${isAdmin ? `<button class="small sell-btn" data-id="${p.id}">Sell</button>` : ''}
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Add event listeners after rendering
+    grid.querySelectorAll('.details-btn').forEach(btn => {
+      btn.onclick = () => showDetails(btn.dataset.id);
+    });
+    if (isAdmin) {
+      grid.querySelectorAll('.sell-btn').forEach(btn => {
+        btn.onclick = () => simulateSale(btn.dataset.id);
+      });
+    }
+  }
+
+  /**
+   * Displays the product details modal with a gallery.
+   */
+  function showDetails(id) {
+    const p = findProduct(id);
+    if (!p) return;
+
+    const node = document.createElement('div');
+    const h = document.createElement('h3');
+    h.textContent = p.name;
+    node.appendChild(h);
+    node.appendChild(document.createElement('hr'));
+
+    const mainDiv = document.createElement('div');
+    mainDiv.className = 'main-media';
+    
+    const mediaList = [];
+    if (p.images) p.images.forEach(i => mediaList.push({ type: 'image', src: i }));
+    if (p.video) mediaList.push({ type: 'video', src: p.video });
+
+    let mediaIndex = 0;
+
+    function renderMainMedia() {
+      mainDiv.innerHTML = '';
+      const current = mediaList[mediaIndex];
+      if (!current) return;
+      if (current.type === 'image') {
+        mainDiv.innerHTML = `<img src="${escapeHtml(current.src)}" alt="Product Image">`;
+      } else if (current.type === 'video') {
+        const videoType = detectVideoType(current.src);
+        if (videoType === 'youtube') {
+          const videoId = extractYouTubeID(current.src);
+          mainDiv.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        } else {
+          mainDiv.innerHTML = `<video controls autoplay style="width:100%; height:100%; object-fit:contain;" src="${escapeHtml(current.src)}"></video>`;
+        }
+      }
+    }
+    
+    node.appendChild(mainDiv);
+
+    if (mediaList.length > 1) {
+      const thumbsDiv = document.createElement('div');
+      thumbsDiv.className = 'gallery';
+      thumbsDiv.style.marginTop = '10px';
+      
+      mediaList.forEach((m, idx) => {
+        const thumb = document.createElement('img');
+        thumb.className = 'thumb';
+        thumb.src = m.type === 'image' ? m.src : 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200"><rect width="100%" height="100%" fill="#000"/><text x="50%" y="50%" fill="#fff" font-size="24" text-anchor="middle" dy=".3em">▶</text></svg>');
+        thumb.onclick = () => { mediaIndex = idx; renderMainMedia(); highlightThumb(); };
+        thumbsDiv.appendChild(thumb);
+      });
+      
+      const highlightThumb = () => {
+          thumbsDiv.querySelectorAll('.thumb').forEach((thumb, idx) => {
+              thumb.style.border = idx === mediaIndex ? '2px solid var(--accent)' : '1px solid #eef6f9';
+          });
+      };
+
+      node.appendChild(thumbsDiv);
+      renderMainMedia();
+      highlightThumb();
+    } else {
+      renderMainMedia();
+    }
+    
+    const info = document.createElement('div');
+    info.style.marginTop = '12px';
+    info.innerHTML = `<div style="font-size:20px; font-weight:bold; color: var(--accent);">${money(p.price)}</div>`;
+    
+    if (isAdmin) {
+      const sellBtn = document.createElement('button');
+      sellBtn.textContent = 'Sell (Simulate)';
+      sellBtn.className = 'btn-primary';
+      sellBtn.style.marginTop = '8px';
+      sellBtn.onclick = () => { simulateSale(p.id); closeModal(); };
+      info.appendChild(sellBtn);
+    }
+    
+    node.appendChild(info);
+    openModal(node);
+  }
+
+  // --- Admin & Sales Logic ---
+
+  function showAdminLogin() {
+    const node = document.createElement('div');
+    node.innerHTML = `
+      <h3>Admin Login</h3><hr>
+      <label>পাসওয়ার্ড</label>
+      <input id="pwInput" type="password" placeholder="Enter admin password">
+      <button id="loginBtn" class="btn-primary" style="margin-top: 12px;">Login</button>
+    `;
+    openModal(node);
+    
+    $('loginBtn').onclick = () => {
+      const password = localStorage.getItem(PW_KEY) || 'admin123';
+      if ($('pwInput').value === password) {
+        isAdmin = true;
+        closeModal();
+        renderProducts(); // Re-render to show admin buttons
+        openModal(createAdminPanel());
+      } else {
+        alert('পাসওয়ার্ড সঠিক নয়');
+      }
+    };
+    setTimeout(() => $('pwInput').focus(), 100);
+  }
+
+  function createAdminPanel() {
+    const node = document.createElement('div');
+    node.innerHTML = `
+      <h3>Admin Panel</h3><hr>
+      <p class="muted">প্রোডাক্ট যোগ বা এডিট করতে সরাসরি <code>data.json</code> ফাইলটি পরিবর্তন করুন এবং GitHub এ পুশ করুন।</p>
+      <button id="dashboardBtn" class="small secondary">Dashboard & Sales</button>
+    `;
+    $('dashboardBtn', node).onclick = () => openModal(createDashboardView());
+    return node;
+  }
+  
+  function createDashboardView() {
+    const node = document.createElement('div');
+    const totalRevenue = state.sales.reduce((sum, s) => sum + (s.price || 0), 0);
+    const totalCommission = state.sales.reduce((sum, s) => sum + (s.commission || 0), 0);
+    
+    let salesHtml = state.sales.length > 0
+      ? state.sales.slice().reverse().map(s => `
+          <div style="padding:8px 0; border-bottom:1px dashed #eef6f9;">
+            <strong>${escapeHtml(s.productName)}</strong> - ${money(s.price)}
+            <div class="muted">Commission: ${money(s.commission)} (${s.commissionPercent}%) &bull; ${new Date(s.when).toLocaleString()}</div>
+          </div>
+        `).join('')
+      : `<p class="muted">কোনো বিক্রয় রেকর্ড নেই।</p>`;
+
+    node.innerHTML = `
+      <h3>Dashboard & Sales</h3><hr>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
+        <div><strong>${state.products.length}</strong><div class="muted">Products</div></div>
+        <div><strong>${state.sales.length}</strong><div class="muted">Total Sales</div></div>
+        <div><strong>${money(totalRevenue)}</strong><div class="muted">Total Revenue</div></div>
+        <div><strong>${money(totalCommission)}</strong><div class="muted">Total Commission</div></div>
+      </div>
+      <hr>
+      <h4>Sales Log</h4>
+      ${salesHtml}
+    `;
+    return node;
+  }
+  
+  function simulateSale(id) {
+    const p = findProduct(id);
+    if (!p) return alert('Product not found');
+    
+    const sale = {
+      id: 's' + Date.now(),
+      productId: p.id,
+      productName: p.name,
+      price: p.price,
+      commissionPercent: p.commissionPercent,
+      commission: (p.price * (p.commissionPercent || 0) / 100),
+      when: Date.now()
+    };
+    
+    state.sales.push(sale);
+    saveSalesToStorage();
+    alert(`Sale Recorded!\nCommission: ${money(sale.commission)} (${sale.commissionPercent}%)`);
+  }
+  
+  function loadSalesFromStorage() {
+    const savedSales = localStorage.getItem(SALES_KEY);
+    if (savedSales) {
+      state.sales = JSON.parse(savedSales);
+    }
+  }
+
+  function saveSalesToStorage() {
+    localStorage.setItem(SALES_KEY, JSON.stringify(state.sales));
+  }
+
+  // --- Utility Functions for Video ---
+  function detectVideoType(url) {
+    if (!url) return '';
+    if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
+    if (url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) return 'direct';
+    return 'direct';
+  }
+
+  function extractYouTubeID(url) {
+    const regex = /(?:v=|\/embed\/|youtu\.be\/|\/v\/|watch\?v=|\&v=)([A-Za-z0-9_\-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  }
+
+  // --- Event Listeners ---
+  $('adminBtn').addEventListener('click', showAdminLogin);
+  
+  $('commissionBtn').addEventListener('click', () => {
+    const node = document.createElement('div');
+    let content = state.products.map(p => {
+        const percent = p.commissionPercent || 0;
+        const commission = p.price * percent / 100;
+        return `
+            <div class="card" style="padding:10px;">
+                <strong>${escapeHtml(p.name)}</strong>
+                <div class="muted">Price: ${money(p.price)}</div>
+                <div style="margin-top:6px;">Commission: ${percent}% &mdash; <strong>${money(commission)}</strong></div>
+            </div>
+        `;
+    }).join('');
+
+    node.innerHTML = `
+        <h3>Commission View</h3><hr>
+        <div style="display:grid; gap:10px;">${content || '<p class="muted">No products found.</p>'}</div>
+    `;
+    openModal(node);
+  });
+  
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'A' || e.key === 'a') && !isAdmin && modalRoot.style.display === 'none') {
+      showAdminLogin();
+    }
+  });
+  
+  // --- Initialize Application ---
+  loadDataAndInitialize();
+
 </script>
 </body>
 </html>
