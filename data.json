@@ -9,6 +9,16 @@
       "price": 750,
       "commissionPercent": 5,
       "video": ""
+    },
+    {
+      "id": "p2",
+      "name": "রোহান",
+      "images": [
+        "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
+      ],
+      "price": 1200,
+      "commissionPercent": 15,
+      "video": ""
     }
   ]
 }
