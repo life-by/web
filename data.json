@@ -19,6 +19,16 @@
       "price": 1200,
       "commissionPercent": 15,
       "video": ""
+    },
+    {
+      "id": "p3",
+      "name": "মোটা",
+      "images": [
+        "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png"
+      ],
+      "price": 2500,
+      "commissionPercent": 5,
+      "video": ""
     }
   ]
 }
