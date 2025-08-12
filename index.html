@@ -1,433 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Three-Piece Shop — Gallery & Video</title>
-  <style>
-    :root {
-      --bg: #f5f8fb;
-      --card: #fff;
-      --accent: #0d6efd;
-      --accent2: #198754;
-      --muted: #6b7280;
-      --radius: 12px;
-      --shadow: 0 8px 28px rgba(11, 22, 40, 0.06);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Inter", "Noto Sans Bengali", Arial, sans-serif;
-      background: var(--bg);
-      color: #0b1220;
-    }
-    .wrap { max-width: 1100px; margin: 20px auto; padding: 16px; }
-    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
-    h1 { margin: 0; font-size: 20px; }
-    .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
-    .actions { display: flex; gap: 8px; }
-    button { border: 0; cursor: pointer; border-radius: 10px; padding: 10px 14px; font-weight: 700; }
-    .btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #fff; }
-    .btn-ghost { background: transparent; border: 1px solid rgba(13, 110, 253, 0.12); color: var(--accent); }
-    .card { background: var(--card); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); }
-    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-    .product {
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid #eef6fa;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      transition: transform .12s;
-    }
-    .product:hover { transform: translateY(-6px); }
-    .product img { width: 100%; height: 200px; object-fit: cover; background: #eef6f9; }
-    .p-body { padding: 12px; flex: 1; display: flex; flex-direction: column; }
-    .p-title { font-weight: 700; margin: 0 0 6px; }
-    .p-price { color: var(--accent); font-weight: 800; margin-bottom: 8px; }
-    .p-actions { display: flex; gap: 8px; margin-top: auto; }
-    .small { padding: 8px 10px; border-radius: 8px; font-size: 13px; }
-    .small.secondary { background: #f3fbfd; color: var(--accent); border: 1px solid rgba(6, 142, 173, 0.06); }
-    label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; }
-    input, textarea, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #e6eef3; font-size: 14px; }
-    .modal-back {
-      position: fixed; inset: 0; background: rgba(2, 6, 23, 0.45);
-      display: none; align-items: center; justify-content: center;
-      padding: 16px; z-index: 60;
-    }
-    .modal {
-      width: 100%; max-width: 820px; background: #fff; padding: 18px;
-      border-radius: 12px; box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
-    }
-    .close-x {
-      background: transparent; border: none; font-size: 20px;
-      position: absolute; right: 18px; top: 18px; cursor: pointer;
-    }
-    .gallery { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .thumb { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid #eef6f9; cursor: pointer; }
-    .main-media {
-      width: 100%; height: 360px; background: #000; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center; overflow: hidden;
-    }
-    .main-media img { width: 100%; height: 100%; object-fit: contain; }
-    .nav-btn { background: rgba(255, 255, 255, 0.8); border-radius: 8px; padding: 8px; border: 0; cursor: pointer; }
-    .muted { color: var(--muted); font-size: 13px; }
-    @media (max-width: 720px) {
-      .product img { height: 160px; }
-      .main-media { height: 220px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আপনার ব্র্যান্ডের নাম - এক্সক্লুসিভ কালেকশন</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Tiro+Bangla:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #d97706;
+            --bg-light: #f8fafc;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --border-color: #e5e7eb;
+        }
+
+        /* বেসিক এবং অন্যান্য স্টাইল পূর্বের মতোই */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Tiro Bangla', serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+        }
+        h1, h2, h3, h4, .logo, .nav-link, .dropdown a, .cta-button, .product-card h3, .order-button, .reseller-button, .filter-btn {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 70px 0; }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: var(--primary-color); }
+        .header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.6rem; color: var(--primary-color); }
+        .nav-list { display: flex; list-style: none; align-items: center; }
+        .nav-item { margin-left: 35px; }
+        .nav-link { font-size: 1rem; color: var(--text-primary); }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+        }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); }
+
+        /* --- পরিবর্তন এখানে --- */
+        .product-card .image-container {
+            height: 400px; /* ছবির কন্টেইনারের একটি নির্দিষ্ট উচ্চতা */
+            background-color: #ffffff; /* ছবির পেছনে একটি সাদা ব্যাকগ্রাউন্ড */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 10px; /* ছবির চারপাশে সামান্য প্যাডিং */
+        }
+
+        .product-card img {
+            max-height: 100%; /* ছবিটি কন্টেইনারের বাইরে যাবে না */
+            width: auto;
+            max-width: 100%;
+            object-fit: contain; /* এই লাইনটি ছবির পুরো অংশ দেখানোর জন্য */
+        }
+        /* --- পরিবর্তন শেষ --- */
+
+        .product-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+        .product-code { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
+        .price-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+        .price { font-size: 1.4rem; color: var(--primary-color); }
+        .commission { font-size: 1.2rem; color: #16a34a; display: none; }
+        .order-button { background: var(--primary-color); color: white; text-align: center; padding: 10px; border-radius: 8px; margin-top: auto; font-size: 0.95rem; }
+        .order-button:hover { background: #172554; }
+
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Three-Piece Shop</h1>
-        <div class="sub">সকল ডেটা এখন কেন্দ্রীয়ভাবে হোস্ট করা</div>
-      </div>
-      <div class="actions">
-        <button id="commissionBtn" class="btn-ghost">Commission View</button>
-        <button id="adminBtn" class="btn-primary">Admin Login</button>
-      </div>
+
+    <header class="header">
+        <!-- হেডার এর কোড এখানে থাকবে -->
     </header>
 
-    <main class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-        <h3 style="margin:0">Products</h3>
-        <div class="muted">ডেটা সোর্স: data.json</div>
-      </div>
-      <div id="productsGrid" class="products">
-        <p class="muted">প্রোডাক্ট লোড হচ্ছে...</p>
-      </div>
-    </main>
-  </div>
+    <main>
+        <section id="products" class="section">
+            <div class="container">
+                <h2 class="section-title">আমাদের থ্রি পিস কালেকশন</h2>
+                <div class="product-grid">
 
-  <div id="modalRoot" class="modal-back">
-    <div class="modal" role="dialog" aria-modal="true" id="modalBox" style="position:relative">
-      <button class="close-x" id="modalClose">&times;</button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
+                    <!-- প্রোডাক্ট কার্ড ১ (লম্বা ছবি) -->
+                    <article class="product-card" data-category="cotton">
+                        <div class="image-container">
+                            <!-- একটি লম্বা ছবি ব্যবহার করে পরীক্ষা করা হচ্ছে -->
+                            <img src="https://i.ibb.co/L5Bwzbx/red-dress.png" alt="তানজিম">
+                        </div>
+                        <div class="product-content">
+                            <h3>তানজিম</h3>
+                            <p class="product-code">কোড: CT-101</p>
+                            <div class="price-info">
+                                <div class="price">৳ 750.00</div>
+                                <div class="commission">কমিশন: ৳ 100</div>
+                            </div>
+                            <a href="#" class="order-button">Details</a>
+                        </div>
+                    </article>
 
-<script>
-  // Global state and configuration
-  const PW_KEY = 'threepiece_gallery_pw';
-  const SALES_KEY = 'threepiece_sales_v1';
-  let state = { products: [], sales: [] };
-  let isAdmin = false;
+                    <!-- প্রোডাক্ট কার্ড ২ (লম্বা ছবি) -->
+                    <article class="product-card" data-category="silk">
+                        <div class="image-container">
+                             <!-- আরেকটি লম্বা ছবি -->
+                            <img src="https://i.ibb.co/Yc5qYy6/blue-dress.png" alt="রোহান">
+                        </div>
+                        <div class="product-content">
+                            <h3>রোহান</h3>
+                            <p class="product-code">কোড: SLK-205</p>
+                            <div class="price-info">
+                                <div class="price">৳ 1200.00</div>
+                                <div class="commission">কমিশন: ৳ 150</div>
+                            </div>
+                            <a href="#" class="order-button">Details</a>
+                        </div>
+                    </article>
+                    
+                    <!-- প্রোডাক্ট কার্ড ৩ (চৌকো ছবি) -->
+                    <article class="product-card" data-category="linen">
+                        <div class="image-container">
+                             <!-- একটি চৌকো ছবি দিয়ে পরীক্ষা -->
+                            <img src="https://picsum.photos/seed/square1/500/500" alt="চৌকো ডিজাইন">
+                        </div>
+                        <div class="product-content">
+                            <h3>নতুন ডিজাইন</h3>
+                            <p class="product-code">কোড: LN-302</p>
+                            <div class="price-info">
+                                <div class="price">৳ 1600</div>
+                                <div class="commission">কমিশন: ৳ 200</div>
+                            </div>
+                            <a href="#" class="order-button">Details</a>
+                        </div>
+                    </article>
 
-  // --- Helper Functions ---
-  const $ = (id) => document.getElementById(id);
-  const money = (x) => `৳${Number(x || 0).toFixed(2)}`;
-  const findProduct = (id) => state.products.find(p => p.id === id);
-  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-
-  // --- Modal Controls ---
-  const modalRoot = $('modalRoot');
-  const modalContent = $('modalContent');
-  const modalClose = $('modalClose');
-
-  function openModal(node) {
-    modalRoot.style.display = 'flex';
-    modalContent.innerHTML = '';
-    modalContent.appendChild(node);
-  }
-
-  function closeModal() {
-    modalRoot.style.display = 'none';
-    modalContent.innerHTML = '';
-  }
-
-  modalClose.onclick = closeModal;
-  modalRoot.onclick = (e) => {
-    if (e.target === modalRoot) closeModal();
-  };
-
-  // --- Core Application Logic ---
-
-  async function loadDataAndInitialize() {
-    try {
-      // *** THIS IS THE FIX ***
-      // We added { cache: 'no-cache' } to ensure the browser always fetches the latest version of the file.
-      const response = await fetch('data.json', { cache: 'no-cache' });
-      
-      if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
-      
-      const data = await response.json();
-      state.products = data.products.map(p => ({
-          ...p,
-          imageMain: p.images && p.images.length > 0 ? p.images[0] : '',
-          videoType: detectVideoType(p.video)
-      }));
-      
-      loadSalesFromStorage();
-      renderProducts();
-    } catch (error) {
-      console.error('Failed to load product data:', error);
-      $('productsGrid').innerHTML = `<p class="muted">Error: প্রোডাক্ট লোড করা সম্ভব হয়নি।</p>`;
-    }
-  }
-  
-  function renderProducts() {
-    const grid = $('productsGrid');
-    grid.innerHTML = '';
-
-    if (state.products.length === 0) {
-      grid.innerHTML = `<p class="muted">কোনো প্রোডাক্ট পাওয়া যায়নি।</p>`;
-      return;
-    }
-
-    state.products.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'product';
-      card.innerHTML = `
-        <img src="${p.imageMain || 'https://via.placeholder.com/300x200/eef6f9/99b3bf?text=No+Image'}" alt="${escapeHtml(p.name)}">
-        <div class="p-body">
-          <div class="p-title">${escapeHtml(p.name)}</div>
-          <div class="p-price">${money(p.price)}</div>
-          <div class="p-actions">
-            <button class="small secondary details-btn" data-id="${p.id}">Details</button>
-            ${isAdmin ? `<button class="small sell-btn" data-id="${p.id}">Sell</button>` : ''}
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-
-    grid.querySelectorAll('.details-btn').forEach(btn => {
-      btn.onclick = () => showDetails(btn.dataset.id);
-    });
-    if (isAdmin) {
-      grid.querySelectorAll('.sell-btn').forEach(btn => {
-        btn.onclick = () => simulateSale(btn.dataset.id);
-      });
-    }
-  }
-
-  function showDetails(id) {
-    const p = findProduct(id);
-    if (!p) return;
-
-    const node = document.createElement('div');
-    const h = document.createElement('h3');
-    h.textContent = p.name;
-    node.appendChild(h);
-    node.appendChild(document.createElement('hr'));
-
-    const mainDiv = document.createElement('div');
-    mainDiv.className = 'main-media';
-    
-    const mediaList = [];
-    if (p.images) p.images.forEach(i => mediaList.push({ type: 'image', src: i }));
-    if (p.video) mediaList.push({ type: 'video', src: p.video });
-
-    let mediaIndex = 0;
-
-    function renderMainMedia() {
-      mainDiv.innerHTML = '';
-      const current = mediaList[mediaIndex];
-      if (!current) return;
-      if (current.type === 'image') {
-        mainDiv.innerHTML = `<img src="${escapeHtml(current.src)}" alt="Product Image">`;
-      } else if (current.type === 'video') {
-        const videoType = detectVideoType(current.src);
-        if (videoType === 'youtube') {
-          const videoId = extractYouTubeID(current.src);
-          mainDiv.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-        } else {
-          mainDiv.innerHTML = `<video controls autoplay style="width:100%; height:100%; object-fit:contain;" src="${escapeHtml(current.src)}"></video>`;
-        }
-      }
-    }
-    
-    node.appendChild(mainDiv);
-
-    if (mediaList.length > 1) {
-      const thumbsDiv = document.createElement('div');
-      thumbsDiv.className = 'gallery';
-      thumbsDiv.style.marginTop = '10px';
-      
-      mediaList.forEach((m, idx) => {
-        const thumb = document.createElement('img');
-        thumb.className = 'thumb';
-        thumb.src = m.type === 'image' ? m.src : 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200"><rect width="100%" height="100%" fill="#000"/><text x="50%" y="50%" fill="#fff" font-size="24" text-anchor="middle" dy=".3em">▶</text></svg>');
-        thumb.onclick = () => { mediaIndex = idx; renderMainMedia(); highlightThumb(); };
-        thumbsDiv.appendChild(thumb);
-      });
-      
-      const highlightThumb = () => {
-          thumbsDiv.querySelectorAll('.thumb').forEach((thumb, idx) => {
-              thumb.style.border = idx === mediaIndex ? '2px solid var(--accent)' : '1px solid #eef6f9';
-          });
-      };
-
-      node.appendChild(thumbsDiv);
-      renderMainMedia();
-      highlightThumb();
-    } else {
-      renderMainMedia();
-    }
-    
-    const info = document.createElement('div');
-    info.style.marginTop = '12px';
-    info.innerHTML = `<div style="font-size:20px; font-weight:bold; color: var(--accent);">${money(p.price)}</div>`;
-    
-    if (isAdmin) {
-      const sellBtn = document.createElement('button');
-      sellBtn.textContent = 'Sell (Simulate)';
-      sellBtn.className = 'btn-primary';
-      sellBtn.style.marginTop = '8px';
-      sellBtn.onclick = () => { simulateSale(p.id); closeModal(); };
-      info.appendChild(sellBtn);
-    }
-    
-    node.appendChild(info);
-    openModal(node);
-  }
-
-  // --- Admin & Sales Logic ---
-
-  function showAdminLogin() {
-    const node = document.createElement('div');
-    node.innerHTML = `
-      <h3>Admin Login</h3><hr>
-      <label>পাসওয়ার্ড</label>
-      <input id="pwInput" type="password" placeholder="Enter admin password">
-      <button id="loginBtn" class="btn-primary" style="margin-top: 12px;">Login</button>
-    `;
-    openModal(node);
-    
-    $('loginBtn').onclick = () => {
-      const password = localStorage.getItem(PW_KEY) || 'admin123';
-      if ($('pwInput').value === password) {
-        isAdmin = true;
-        closeModal();
-        renderProducts();
-        openModal(createAdminPanel());
-      } else {
-        alert('পাসওয়ার্ড সঠিক নয়');
-      }
-    };
-    setTimeout(() => $('pwInput').focus(), 100);
-  }
-
-  function createAdminPanel() {
-    const node = document.createElement('div');
-    node.innerHTML = `
-      <h3>Admin Panel</h3><hr>
-      <p class="muted">প্রোডাক্ট যোগ বা এডিট করতে সরাসরি <code>data.json</code> ফাইলটি পরিবর্তন করুন এবং GitHub এ পুশ করুন।</p>
-      <button id="dashboardBtn" class="small secondary">Dashboard & Sales</button>
-    `;
-    node.querySelector('#dashboardBtn').onclick = () => openModal(createDashboardView());
-    return node;
-  }
-  
-  function createDashboardView() {
-    const node = document.createElement('div');
-    const totalRevenue = state.sales.reduce((sum, s) => sum + (s.price || 0), 0);
-    const totalCommission = state.sales.reduce((sum, s) => sum + (s.commission || 0), 0);
-    
-    let salesHtml = state.sales.length > 0
-      ? state.sales.slice().reverse().map(s => `
-          <div style="padding:8px 0; border-bottom:1px dashed #eef6f9;">
-            <strong>${escapeHtml(s.productName)}</strong> - ${money(s.price)}
-            <div class="muted">Commission: ${money(s.commission)} (${s.commissionPercent}%) &bull; ${new Date(s.when).toLocaleString()}</div>
-          </div>
-        `).join('')
-      : `<p class="muted">কোনো বিক্রয় রেকর্ড নেই।</p>`;
-
-    node.innerHTML = `
-      <h3>Dashboard & Sales</h3><hr>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
-        <div><strong>${state.products.length}</strong><div class="muted">Products</div></div>
-        <div><strong>${state.sales.length}</strong><div class="muted">Total Sales</div></div>
-        <div><strong>${money(totalRevenue)}</strong><div class="muted">Total Revenue</div></div>
-        <div><strong>${money(totalCommission)}</strong><div class="muted">Total Commission</div></div>
-      </div>
-      <hr>
-      <h4>Sales Log</h4>
-      ${salesHtml}
-    `;
-    return node;
-  }
-  
-  function simulateSale(id) {
-    const p = findProduct(id);
-    if (!p) return alert('Product not found');
-    
-    const sale = {
-      id: 's' + Date.now(),
-      productId: p.id,
-      productName: p.name,
-      price: p.price,
-      commissionPercent: p.commissionPercent,
-      commission: (p.price * (p.commissionPercent || 0) / 100),
-      when: Date.now()
-    };
-    
-    state.sales.push(sale);
-    saveSalesToStorage();
-    alert(`Sale Recorded!\nCommission: ${money(sale.commission)} (${sale.commissionPercent}%)`);
-  }
-  
-  function loadSalesFromStorage() {
-    const savedSales = localStorage.getItem(SALES_KEY);
-    if (savedSales) {
-      state.sales = JSON.parse(savedSales);
-    }
-  }
-
-  function saveSalesToStorage() {
-    localStorage.setItem(SALES_KEY, JSON.stringify(state.sales));
-  }
-
-  // --- Utility Functions for Video ---
-  function detectVideoType(url) {
-    if (!url) return '';
-    if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
-    if (url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) return 'direct';
-    return 'direct';
-  }
-
-  function extractYouTubeID(url) {
-    const regex = /(?:v=|\/embed\/|youtu\.be\/|\/v\/|watch\?v=|\&v=)([A-Za-z0-9_\-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-  }
-
-  // --- Event Listeners ---
-  $('adminBtn').addEventListener('click', showAdminLogin);
-  
-  $('commissionBtn').addEventListener('click', () => {
-    const node = document.createElement('div');
-    let content = state.products.map(p => {
-        const percent = p.commissionPercent || 0;
-        const commission = p.price * percent / 100;
-        return `
-            <div class="card" style="padding:10px;">
-                <strong>${escapeHtml(p.name)}</strong>
-                <div class="muted">Price: ${money(p.price)}</div>
-                <div style="margin-top:6px;">Commission: ${percent}% &mdash; <strong>${money(commission)}</strong></div>
+                </div>
             </div>
-        `;
-    }).join('');
+        </section>
+    </main>
 
-    node.innerHTML = `
-        <h3>Commission View</h3><hr>
-        <div style="display:grid; gap:10px;">${content || '<p class="muted">No products found.</p>'}</div>
-    `;
-    openModal(node);
-  });
-  
-  document.addEventListener('keydown', (e) => {
-    if ((e.key === 'A' || e.key === 'a') && !isAdmin && modalRoot.style.display === 'none') {
-      showAdminLogin();
-    }
-  });
-  
-  // --- Initialize Application ---
-  loadDataAndInitialize();
+    <!-- জাভাস্ক্রিপ্ট কোড এখানে থাকবে -->
 
-</script>
 </body>
 </html>
