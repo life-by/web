@@ -17,11 +17,9 @@
             --secondary-color: #d97706;
             --bg-light: #f8fafc;
             --text-primary: #1f2937;
-            --text-secondary: #4b5563;
             --border-color: #e5e7eb;
         }
 
-        /* বেসিক এবং অন্যান্য স্টাইল পূর্বের মতোই */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -29,20 +27,15 @@
             background-color: var(--bg-light);
             color: var(--text-primary);
         }
-        h1, h2, h3, h4, .logo, .nav-link, .dropdown a, .cta-button, .product-card h3, .order-button, .reseller-button, .filter-btn {
+        h1, h2, h3, h4, .logo, .nav-link, .product-card h3, .order-button {
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .section { padding: 70px 0; }
         .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: var(--primary-color); }
-        .header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.6rem; color: var(--primary-color); }
-        .nav-list { display: flex; list-style: none; align-items: center; }
-        .nav-item { margin-left: 35px; }
-        .nav-link { font-size: 1rem; color: var(--text-primary); }
-        
+        .header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .product-card {
             background-color: white;
@@ -51,101 +44,81 @@
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            transition: all 0.4s ease;
         }
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); }
-
-        /* --- পরিবর্তন এখানে --- */
+        
+        /* --- চূড়ান্ত সমাধান এখানে --- */
         .product-card .image-container {
-            height: 400px; /* ছবির কন্টেইনারের একটি নির্দিষ্ট উচ্চতা */
-            background-color: #ffffff; /* ছবির পেছনে একটি সাদা ব্যাকগ্রাউন্ড */
+            height: 400px;
+            background-color: #ffffff;
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* ছবিকে উপর থেকে দেখানো শুরু হবে */
             justify-content: center;
             overflow: hidden;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
-            padding: 10px; /* ছবির চারপাশে সামান্য প্যাডিং */
+            padding: 5px; 
         }
 
         .product-card img {
-            max-height: 100%; /* ছবিটি কন্টেইনারের বাইরে যাবে না */
+            max-height: 100%;
             width: auto;
             max-width: 100%;
-            object-fit: contain; /* এই লাইনটি ছবির পুরো অংশ দেখানোর জন্য */
+            object-fit: contain;
         }
-        /* --- পরিবর্তন শেষ --- */
+        /* --- সমাধান শেষ --- */
 
-        .product-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .product-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
-        .product-code { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
-        .price-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-        .price { font-size: 1.4rem; color: var(--primary-color); }
-        .commission { font-size: 1.2rem; color: #16a34a; display: none; }
-        .order-button { background: var(--primary-color); color: white; text-align: center; padding: 10px; border-radius: 8px; margin-top: auto; font-size: 0.95rem; }
-        .order-button:hover { background: #172554; }
+        .product-content { padding: 20px; text-align: center; }
+        .product-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
+        .price { font-size: 1.3rem; color: var(--primary-color); font-weight: 700; margin-bottom: 15px; }
+        .order-button {
+            display: inline-block;
+            background-color: #eef2ff;
+            color: var(--primary-color);
+            padding: 8px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .order-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
 
     </style>
 </head>
 <body>
 
     <header class="header">
-        <!-- হেডার এর কোড এখানে থাকবে -->
+        <!-- এখানে আপনার হেডার বা মেনুবার থাকবে -->
     </header>
 
     <main>
         <section id="products" class="section">
             <div class="container">
-                <h2 class="section-title">আমাদের থ্রি পিস কালেকশন</h2>
+                <h2 class="section-title">Products</h2>
                 <div class="product-grid">
 
-                    <!-- প্রোডাক্ট কার্ড ১ (লম্বা ছবি) -->
-                    <article class="product-card" data-category="cotton">
+                    <!-- প্রোডাক্ট কার্ড ১ -->
+                    <article class="product-card">
                         <div class="image-container">
-                            <!-- একটি লম্বা ছবি ব্যবহার করে পরীক্ষা করা হচ্ছে -->
                             <img src="https://i.ibb.co/L5Bwzbx/red-dress.png" alt="তানজিম">
                         </div>
                         <div class="product-content">
                             <h3>তানজিম</h3>
-                            <p class="product-code">কোড: CT-101</p>
-                            <div class="price-info">
-                                <div class="price">৳ 750.00</div>
-                                <div class="commission">কমিশন: ৳ 100</div>
-                            </div>
+                            <p class="price">৳750.00</p>
                             <a href="#" class="order-button">Details</a>
                         </div>
                     </article>
 
-                    <!-- প্রোডাক্ট কার্ড ২ (লম্বা ছবি) -->
-                    <article class="product-card" data-category="silk">
+                    <!-- প্রোডাক্ট কার্ড ২ -->
+                    <article class="product-card">
                         <div class="image-container">
-                             <!-- আরেকটি লম্বা ছবি -->
                             <img src="https://i.ibb.co/Yc5qYy6/blue-dress.png" alt="রোহান">
                         </div>
                         <div class="product-content">
                             <h3>রোহান</h3>
-                            <p class="product-code">কোড: SLK-205</p>
-                            <div class="price-info">
-                                <div class="price">৳ 1200.00</div>
-                                <div class="commission">কমিশন: ৳ 150</div>
-                            </div>
-                            <a href="#" class="order-button">Details</a>
-                        </div>
-                    </article>
-                    
-                    <!-- প্রোডাক্ট কার্ড ৩ (চৌকো ছবি) -->
-                    <article class="product-card" data-category="linen">
-                        <div class="image-container">
-                             <!-- একটি চৌকো ছবি দিয়ে পরীক্ষা -->
-                            <img src="https://picsum.photos/seed/square1/500/500" alt="চৌকো ডিজাইন">
-                        </div>
-                        <div class="product-content">
-                            <h3>নতুন ডিজাইন</h3>
-                            <p class="product-code">কোড: LN-302</p>
-                            <div class="price-info">
-                                <div class="price">৳ 1600</div>
-                                <div class="commission">কমিশন: ৳ 200</div>
-                            </div>
+                            <p class="price">৳1200.00</p>
                             <a href="#" class="order-button">Details</a>
                         </div>
                     </article>
@@ -154,8 +127,6 @@
             </div>
         </section>
     </main>
-
-    <!-- জাভাস্ক্রিপ্ট কোড এখানে থাকবে -->
 
 </body>
 </html>
