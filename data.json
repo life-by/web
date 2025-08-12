@@ -1,1 +1,36 @@
 
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Royal Black Premium Three-Piece",
+      "images": [
+        "https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-1.jpg",
+        "https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-2.jpg"
+      ],
+      "price": 2500,
+      "commissionPercent": 10,
+      "video": "https://www.youtube.com/watch?v=ysz5S6PUM-U"
+    },
+    {
+      "id": "p2",
+      "name": "Classic Navy Stylish Three-Piece",
+      "images": [
+        "https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-3.jpg"
+      ],
+      "price": 2200,
+      "commissionPercent": 8,
+      "video": ""
+    },
+    {
+      "id": "p3",
+      "name": "Elegant Maroon Cotton Three-Piece",
+      "images": [
+        "https://raw.githubusercontent.com/kamrulhasan-g/test-public-images/main/three-piece-4.jpg"
+      ],
+      "price": 2850,
+      "commissionPercent": 12,
+      "video": ""
+    }
+  ]
+}
