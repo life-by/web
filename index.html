@@ -13,15 +13,14 @@
 
     <style>
         :root {
-            --primary-color: #1e3a8a; /* গাঢ় নীল */
-            --secondary-color: #d97706; /* গাঢ় সোনালী */
+            --primary-color: #1e3a8a;
+            --secondary-color: #d97706;
             --bg-light: #f8fafc;
             --text-primary: #1f2937;
             --text-secondary: #4b5563;
             --border-color: #e5e7eb;
         }
 
-        /* বেসিক এবং অন্যান্য স্টাইল পূর্বের মতোই */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -33,6 +32,7 @@
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
+        a { text-decoration: none; color: inherit; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .section { padding: 70px 0; }
         .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: var(--primary-color); }
@@ -44,53 +44,52 @@
         .nav-menu { display: flex; align-items: center; }
         .nav-list { display: flex; list-style: none; align-items: center; }
         .nav-item { margin-left: 35px; }
-        .nav-link { font-size: 1rem; color: var(--text-primary); transition: color 0.3s; text-decoration: none; }
-        .reseller-button { background-color: var(--secondary-color); color: white; padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; margin-left: 20px; cursor: pointer; border: none; }
+        .nav-link { font-size: 1rem; color: var(--text-primary); transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-color); }
+        .dropdown { position: relative; }
+        .dropdown-menu { position: absolute; top: 150%; left: -20px; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; padding: 10px 0; list-style: none; width: 180px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu li a { display: block; padding: 10px 20px; font-size: 0.95rem; }
+        .reseller-button { background-color: var(--secondary-color); color: white; padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; margin-left: 20px; cursor: pointer; border: none; transition: all 0.3s; }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* প্রোডাক্ট স্লাইডার */
+        .slider-container { width: 100%; max-width: 1200px; margin: 30px auto; position: relative; overflow: hidden; border-radius: 15px; }
+        .slider { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; }
+        .slide img { width: 100%; height: 55vh; object-fit: cover; }
         
-        /* প্রোডাক্ট গ্রিড এবং কার্ড */
+        /* ক্যাটাগরি ফিল্টার মেনু */
+        .filter-menu { text-align: center; margin-bottom: 40px; }
+        .filter-btn { border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 22px; margin: 5px; border-radius: 50px; font-size: 0.95rem; background: none; cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
+
+        /* প্রোডাক্ট গ্রিড ও কার্ড */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .product-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            transition: all 0.4s ease;
-        }
+        .product-card { background-color: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-color); display: flex; flex-direction: column; transition: all 0.4s ease; }
+        .product-card.hide { transform: scale(0.9); opacity: 0; display: none; }
         .product-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); }
-
-        /* --- ছবির সমস্যার চূড়ান্ত সমাধান --- */
-        .product-card .image-container {
-            height: 400px;
-            background-color: #ffffff;
-            display: flex;
-            align-items: flex-start; /* ছবিকে উপর থেকে দেখানো শুরু হবে */
-            justify-content: center;
-            overflow: hidden;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            padding: 5px; 
-        }
-        .product-card img {
-            max-height: 100%;
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
-        }
-        /* --- সমাধান শেষ --- */
-
+        
+        /* ছবির সমস্যার চূড়ান্ত সমাধান */
+        .product-card .image-container { height: 400px; background-color: #ffffff; display: flex; align-items: flex-start; justify-content: center; overflow: hidden; border-top-left-radius: 15px; border-top-right-radius: 15px; padding: 5px; }
+        .product-card img { max-height: 100%; width: auto; max-width: 100%; object-fit: contain; }
+        
         .product-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; text-align: left; }
         .product-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
         .price-info { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; }
         .price { font-size: 1.4rem; color: var(--primary-color); }
-        .commission { font-size: 1.2rem; color: #16a34a; display: none; } /* কমিশন গোপন থাকবে */
-        .order-button { display: inline-block; background-color: #eef2ff; color: var(--primary-color); padding: 8px 30px; border-radius: 50px; text-decoration: none; font-size: 0.95rem; text-align: center; margin-top: auto; }
-        
+        .commission { font-size: 1.2rem; color: #16a34a; display: none; }
+        .order-button { display: inline-block; background-color: #eef2ff; color: var(--primary-color); padding: 8px 30px; border-radius: 50px; font-size: 0.95rem; text-align: center; margin-top: auto; }
+
         /* মোবাইল রেসপন্সিভ ডিজাইন */
         @media (max-width: 992px) {
-            /* এখানে মোবাইল মেনুর জন্য CSS কোড থাকবে, যা আগের উত্তরে দেওয়া হয়েছিল */
+            .nav-list { position: fixed; top: 72px; left: -100%; width: 100%; height: calc(100vh - 72px); background: white; flex-direction: column; justify-content: center; align-items: center; transition: left 0.4s ease; }
+            .nav-list.active { left: 0; }
+            .nav-item { margin: 20px 0; }
+            .dropdown:hover .dropdown-menu { display: none; }
+            .dropdown.open .dropdown-menu { display: block; position: static; width: 100%; text-align: center; box-shadow: none; background-color: #f8f9fa; margin-top: 10px; }
+            .menu-toggle { display: block; }
+            .reseller-button { display: none; }
         }
     </style>
 </head>
@@ -101,7 +100,15 @@
             <a href="#" class="logo">Three-Piece Shop</a>
             <div class="nav-menu">
                 <ul class="nav-list" id="navList">
-                    <!-- এখানে মেনু আইটেমগুলো থাকবে -->
+                    <li class="nav-item"><a href="#" class="nav-link">হোম</a></li>
+                    <li class="nav-item"><a href="#products" class="nav-link">থ্রি পিস</a></li>
+                    <li class="nav-item dropdown" id="dropdown">
+                        <a href="#" class="nav-link">অন্যান্য প্রোডাক্ট <i class="fas fa-chevron-down fa-xs"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">শাড়ি</a></li>
+                            <li><a href="#">গহনা</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <button class="reseller-button" id="resellerBtnDesktop"><i class="fas fa-eye"></i> Commission View</button>
                 <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
@@ -110,12 +117,23 @@
     </header>
 
     <main>
+        <section class="slider-container">
+            <div class="slider">
+                <div class="slide"><img src="https://picsum.photos/seed/slide1/1200/500" alt="Slide 1"></div>
+                <div class="slide"><img src="https://picsum.photos/seed/slide2/1200/500" alt="Slide 2"></div>
+            </div>
+        </section>
+
         <section id="products" class="section">
             <div class="container">
                 <h2 class="section-title">Products</h2>
-                <div class="product-grid">
+                <div class="filter-menu">
+                    <button class="filter-btn active" data-filter="all">সব</button>
+                    <button class="filter-btn" data-filter="cotton">কটন</button>
+                    <button class="filter-btn" data-filter="silk">সিল্ক</button>
+                </div>
 
-                    <!-- প্রোডাক্ট কার্ড ১ -->
+                <div class="product-grid">
                     <article class="product-card" data-category="cotton">
                         <div class="image-container">
                             <img src="https://i.ibb.co/L5Bwzbx/red-dress.png" alt="তানজিম">
@@ -130,7 +148,6 @@
                         </div>
                     </article>
 
-                    <!-- প্রোডাক্ট কার্ড ২ -->
                     <article class="product-card" data-category="silk">
                         <div class="image-container">
                             <img src="https://i.ibb.co/Yc5qYy6/blue-dress.png" alt="রোহান">
@@ -144,37 +161,66 @@
                             <a href="#" class="order-button">Details</a>
                         </div>
                     </article>
-
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-        // *** রিসেলার পাসওয়ার্ড সিস্টেম ***
+        // রিসেলার পাসওয়ার্ড সিস্টেম
         document.getElementById('resellerBtnDesktop').addEventListener('click', function() {
-            // বাটনটির টেক্সট পরিবর্তন করা হবে
             const button = this;
             const commissions = document.querySelectorAll('.commission');
             const isHidden = commissions[0].style.display === 'none' || commissions[0].style.display === '';
-
             if (isHidden) {
-                const secretPassword = "1234"; // <-- আপনার গোপন পাসওয়ার্ড এখানে দিন
+                const secretPassword = "1234";
                 const enteredPassword = prompt("কমিশন দেখতে পাসওয়ার্ড দিন:");
-
                 if (enteredPassword === secretPassword) {
                     commissions.forEach(el => { el.style.display = 'block'; });
                     button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Commission';
-                    button.style.backgroundColor = '#c2410c'; // রঙ পরিবর্তন
-                } else if (enteredPassword) {
-                    alert('ভুল পাসওয়ার্ড!');
-                }
+                    button.style.backgroundColor = '#c2410c';
+                } else if (enteredPassword) { alert('ভুল পাসওয়ার্ড!'); }
             } else {
-                // কমিশন লুকানো হবে
                 commissions.forEach(el => { el.style.display = 'none'; });
                 button.innerHTML = '<i class="fas fa-eye"></i> Commission View';
-                button.style.backgroundColor = 'var(--secondary-color)'; // আগের রঙে ফেরত
+                button.style.backgroundColor = 'var(--secondary-color)';
             }
+        });
+
+        // প্রোডাক্ট স্লাইডার
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }, 4000);
+
+        // ক্যাটাগরি ফিল্টার
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                button.classList.add('active');
+                const filter = button.dataset.filter;
+                productCards.forEach(card => {
+                    card.classList.add('hide');
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        setTimeout(() => card.classList.remove('hide'), 10);
+                    }
+                });
+            });
+        });
+
+        // মোবাইল মেনু
+        const menuToggle = document.getElementById('menuToggle');
+        const navList = document.getElementById('navList');
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
     </script>
 
