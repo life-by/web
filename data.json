@@ -1,34 +1,34 @@
-{
-  "products": [
-    {
-      "id": "p1",
-      "name": "তানজিম",
-      "images": [
-        "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png"
-      ],
-      "price": 750,
-      "commissionPercent": 5,
-      "video": ""
-    },
-    {
-      "id": "p2",
-      "name": "রোহান",
-      "images": [
-        "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
-      ],
-      "price": 1200,
-      "commissionPercent": 15,
-      "video": ""
-    },
-    {
-      "id": "p3",
-      "name": "মোটা",
-      "images": [
-        "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png"
-      ],
-      "price": 2500,
-      "commissionPercent": 5,
-      "video": ""
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "তানজিম",
+    "price": 750,
+    "commission": 100,
+    "image": "https://i.ibb.co/L5Bwzbx/red-dress.png",
+    "category": "cotton"
+  },
+  {
+    "id": 2,
+    "name": "রোহান",
+    "price": 1200,
+    "commission": 150,
+    "image": "https://i.ibb.co/Yc5qYy6/blue-dress.png",
+    "category": "silk"
+  },
+  {
+    "id": 3,
+    "name": "ডিজিটাল প্রিন্ট",
+    "price": 1600,
+    "commission": 200,
+    "image": "https://picsum.photos/seed/linen1/400/500",
+    "category": "linen"
+  },
+  {
+    "id": 4,
+    "name": "ব্লক প্রিন্ট কটন",
+    "price": 1250,
+    "commission": 150,
+    "image": "https://picsum.photos/seed/cotton2/400/500",
+    "category": "cotton"
+  }
+]
