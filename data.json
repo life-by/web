@@ -1,9 +1,10 @@
 [
   {
-    "name": "থ্রি-পিস মডেল (১)",
-    "price": 1250,
-    "commission": 120,
+    "category": "শাড়ি",
+    "name": "শাড়ি",
+    "price": 2500,
     "image": "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png",
-    "category": "কটন"
+    "description": "",
+    "commissionPassword": "t"
   }
 ]
