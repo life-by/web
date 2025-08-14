@@ -122,7 +122,8 @@
             async function loadData() {
                 try {
                     // *** ক্যাশিং সমস্যা সমাধান: প্রতিবার নতুন ডেটা লোড হবে ***
-                    const response = await fetch('data.json', { cache: 'no-cache' });
+                    // শুধুমাত্র './' যোগ করতে হবে
+                    const response = await fetch('./data.json', { cache: 'no-cache' });
                     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                     allProducts = await response.json();
                     
@@ -233,3 +234,4 @@
 
 </body>
 </html>
+
