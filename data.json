@@ -1,11 +1,11 @@
 [
   {
     "category": "Three-Piece",
-    "name": "Tangim",
-    "price": 2500,
+    "name": "Rohan",
+    "price": 1250,
     "image": "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
     "description": "",
-    "commission": 5,
+    "commission": 15,
     "commissionPassword": "014"
   }
 ]
