@@ -1,461 +1,358 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Three-Piece Shop</title>
-  <!-- Font: system stack for performance -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-6Z8e3D7qf1z7fWvZ7d0JfT+N0E6s9zvP4wqD4mQx7w1oJk6k4h3f1RkFf9gFq7g1rH8W8V1K6wJ5m1p2v3yQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    /* =====================
-       CSS Variables & Reset
-       ===================== */
-    :root{
-      --bg:#0f172a;           /* slate-900 */
-      --card:#111827;         /* gray-900 */
-      --muted:#94a3b8;        /* slate-400 */
-      --text:#e5e7eb;         /* gray-200 */
-      --brand:#14b8a6;        /* teal-500 */
-      --brand-2:#22c55e;      /* green-500 */
-      --accent:#f59e0b;       /* amber-500 */
-      --danger:#ef4444;       /* red-500 */
-      --shadow:0 10px 30px rgba(0,0,0,.25);
-      --radius:16px;
-      --radius-sm:12px;
-      --maxw:1200px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Three-Piece Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background:linear-gradient(180deg, #0b1023 0%, #0f172a 100%);
-      color:var(--text);
-    }
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-    button{font:inherit}
+<style>
+:root{
+  --bg:#0b1220; --card:#0f172a; --muted:#94a3b8; --text:#e2e8f0; --brand:#22d3ee; --accent:#38bdf8; --ok:#22c55e; --danger:#ef4444;
+  --ring:#1e293b; --chip:#111827; --chipText:#cbd5e1;
+  --grid-gap:14px; --img-h:260px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Noto Sans',system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#070c18 0%, #0b1220 100%);color:var(--text);line-height:1.5;}
 
-    /* =====================
-       Header / Navbar
-       ===================== */
-    .header{
-      position:sticky; top:0; z-index:50; backdrop-filter: blur(8px);
-      background:rgba(15,23,42,.7); border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .nav{
-      max-width:var(--maxw); margin:0 auto; padding:.75rem 1rem; display:flex; align-items:center; gap:.75rem;
-    }
-    .logo{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.2px}
-    .logo i{color:var(--brand)}
+/* Header / Nav */
+.header{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.75);backdrop-filter:blur(8px);border-bottom:1px solid #0b1730}
+.nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;}
+.logo{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:700}
+.logo i{color:var(--brand)}
+.nav-links{display:flex;align-items:center;gap:14px}
+.nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
+.nav-links a:hover{background:rgba(56,189,248,.12)}
+.dropdown{position:relative}
+.dropdown > a{display:flex;align-items:center;gap:6px}
+.dropdown-menu{position:absolute;top:110%;right:0;background:#0b1220;border:1px solid var(--ring);border-radius:12px;min-width:180px;padding:6px;display:none;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.dropdown-menu a{display:block;padding:8px 10px;border-radius:8px}
+.dropdown:hover .dropdown-menu{display:block}
+.btn{border:1px solid var(--ring);background:#111827;color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+.btn:hover{border-color:#334155}
+.btn-accent{background:linear-gradient(90deg,#06b6d4,#3b82f6);border:none}
+.btn-accent:hover{opacity:.95}
+.hamburger{display:none}
 
-    .spacer{flex:1}
+/* Hero Slider */
+.slider{max-width:1200px;margin:14px auto 0;overflow:hidden;border-radius:16px;border:1px solid var(--ring);background:#0b1220}
+.slides{display:flex;transition:transform .6s ease}
+.slide{min-width:100%;height:320px;position:relative;display:flex;align-items:center;justify-content:center;background:#0b1220}
+.slide img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.slide .caption{position:absolute;bottom:16px;left:16px;background:rgba(2,6,23,.6);padding:8px 12px;border-radius:10px}
 
-    .nav-links{display:flex; align-items:center; gap:.5rem}
-    .nav-links a, .nav-links button{
-      padding:.55rem .9rem; border-radius:999px; border:1px solid rgba(255,255,255,.08);
-      background:transparent; color:var(--text); cursor:pointer; transition:.2s ease; display:inline-flex; align-items:center; gap:.5rem
-    }
-    .nav-links a:hover, .nav-links button:hover{background:rgba(255,255,255,.06)}
+/* Filters */
+.filters{max-width:1200px;margin:16px auto 0;display:flex;flex-wrap:wrap;gap:8px;padding:0 8px}
+.filter-btn{background:#111827;border:1px solid var(--ring);color:var(--text);padding:6px 12px;border-radius:999px;cursor:pointer}
+.filter-btn.active{background:var(--accent);border-color:transparent}
+.badge{background:#0b1220;color:var(--chipText);padding:2px 8px;border-radius:999px;border:1px solid var(--ring);}
 
-    /* Dropdown */
-    .dropdown{position:relative}
-    .dropdown-menu{
-      position:absolute; right:0; margin-top:.35rem; min-width:180px;
-      background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius-sm); box-shadow:var(--shadow);
-      display:none; flex-direction:column; overflow:hidden
-    }
-    .dropdown.open .dropdown-menu{display:flex}
-    .dropdown-menu a{padding:.75rem 1rem; border-bottom:1px solid rgba(255,255,255,.06)}
-    .dropdown-menu a:last-child{border-bottom:none}
-    .dropdown-menu a:hover{background:rgba(255,255,255,.06)}
+/* Grid */
+.grid{max-width:1200px;margin:12px auto;padding:8px;display:grid;gap:var(--grid-gap);grid-template-columns:repeat(1,minmax(0,1fr))}
+@media(min-width:620px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--card);border:1px solid var(--ring);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease, box-shadow .25s ease; box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.card:hover{transform:translateY(-3px)}
+.img-wrap{height:var(--img-h);display:flex;align-items:flex-start;justify-content:center;background:#0b1220}
+.img-wrap img{width:100%;height:100%;object-fit:contain;object-position:top}
+.content{padding:12px}
+.price{font-weight:700}
+.commission{display:none;margin-top:6px;color:#a7f3d0}
+.card.show-commission .commission{display:block}
+.actions{display:flex;gap:8px;margin-top:10px}
+.action-btn{flex:1;padding:8px;border-radius:10px;border:1px solid var(--ring);background:#111827;color:var(--text);cursor:pointer}
+.action-btn:hover{border-color:#334155}
 
-    /* Commission Button state */
-    .btn-commission{border-color:rgba(20,184,166,.4)}
-    .btn-commission.active{background:rgba(20,184,166,.15); border-color:var(--brand)}
+/* Filter animation */
+.card.fade-hide{opacity:0;transform:scale(.96);pointer-events:none;transition:opacity .25s ease, transform .25s ease}
+.card.fade-show{opacity:1;transform:scale(1)}
 
-    /* Hamburger */
-    .hamburger{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background:transparent}
-    .desktop-only{display:none}
+/* Commission table */
+.comm-wrap{max-width:1200px;margin:20px auto;padding:8px;display:none}
+.comm-wrap.visible{display:block}
+.table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--ring);border-radius:14px;overflow:hidden}
+.table th,.table td{border-bottom:1px solid var(--ring);padding:10px;text-align:left}
+.table th{background:#0b1220}
+tfoot td{font-weight:700}
 
-    /* Mobile menu */
-    .mobile-menu{display:none; border-top:1px solid rgba(255,255,255,.08); background:rgba(17,24,39,.9)}
-    .mobile-menu a, .mobile-menu button{display:block; width:100%; text-align:left; padding:1rem; border-bottom:1px solid rgba(255,255,255,.06); background:transparent; color:var(--text)}
+/* Footer */
+.footer{max-width:1200px;margin:28px auto 40px;padding:8px;color:var(--muted);text-align:center}
 
-    @media(min-width:900px){
-      .desktop-only{display:flex}
-      .hamburger, .mobile-menu{display:none}
-    }
-
-    /* =====================
-       Hero Slider
-       ===================== */
-    .slider{
-      position:relative; max-width:var(--maxw); margin:1rem auto 0; padding:0 1rem;
-    }
-    .slider-track{
-      position:relative; height:240px; border-radius:var(--radius); overflow:hidden;
-      background:radial-gradient(60% 90% at 50% 10%, rgba(20,184,166,.15), transparent), #0b132b;
-      display:flex; align-items:stretch;
-    }
-    .slide{min-width:100%; position:relative; display:flex; align-items:center; justify-content:center; padding:0;}
-    .slide img{width:100%; height:100%; object-fit:cover; opacity:.85}
-    .slide-caption{
-      position:absolute; left:0; right:0; bottom:0; padding:1rem 1.25rem; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 90%);
-      display:flex; align-items:end; justify-content:space-between; gap:1rem
-    }
-    .slide-caption h3{margin:0; font-size:1.1rem}
-    .slide-caption .badge{font-size:.85rem; padding:.35rem .6rem; border-radius:999px; background:rgba(245,158,11,.9); color:#111827}
-    .slider-dots{display:flex; gap:.35rem; position:absolute; left:50%; transform:translateX(-50%); bottom:10px}
-    .slider-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(255,255,255,.4); cursor:pointer}
-    .slider-dots button.active{background:var(--brand)}
-
-    @media(min-width:768px){
-      .slider-track{height:360px}
-      .slide-caption h3{font-size:1.35rem}
-    }
-
-    /* =====================
-       Filters + Grid
-       ===================== */
-    .section{max-width:var(--maxw); margin:2rem auto; padding:0 1rem}
-    .section h2{margin:0 0 .75rem; font-size:1.25rem}
-
-    .filters{display:flex; gap:.5rem; flex-wrap:wrap}
-    .chip{padding:.55rem .9rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:transparent; color:var(--text); cursor:pointer}
-    .chip.active{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.3)}
-
-    .grid{
-      margin-top:1rem; display:grid; gap:1rem;
-      grid-template-columns:1fr 1fr; align-items:stretch
-    }
-    @media(min-width:640px){.grid{grid-template-columns:repeat(3, 1fr)}}
-    @media(min-width:980px){.grid{grid-template-columns:repeat(4, 1fr)}}
-
-    .card{
-      background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius);
-      box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; transition:transform .2s ease, box-shadow .2s ease;
-      opacity:0; transform:translateY(12px) scale(.98); animation:cardIn .35s forwards ease
-    }
-    @keyframes cardIn{to{opacity:1; transform:translateY(0) scale(1)}}
-    .card:hover{transform:translateY(-4px)}
-
-    .thumb{
-      height:240px; display:flex; align-items:flex-start; justify-content:center; background:#0b1023;
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .thumb img{
-      width:100%; height:100%; object-fit:contain; /* Never crop the dress */
-      object-position:top center; /* show top fully */
-    }
-
-    .card-body{padding:.9rem}
-    .title{font-weight:700; margin:0 0 .25rem; font-size:1rem}
-    .price{color:var(--brand-2); font-weight:700; margin:.1rem 0 .35rem}
-    .meta{display:flex; align-items:center; justify-content:space-between; gap:.5rem; flex-wrap:wrap}
-    .commission{display:inline-flex; align-items:center; gap:.4rem; padding:.4rem .6rem; border-radius:8px; background:rgba(20,184,166,.12); color:var(--brand)}
-    .commission.hidden{display:none}
-
-    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.6rem .9rem; border:none; border-radius:10px; cursor:pointer}
-    .btn-outline{background:transparent; border:1px solid rgba(255,255,255,.15); color:var(--text)}
-    .btn-outline:hover{background:rgba(255,255,255,.08)}
-    .btn-primary{background:linear-gradient(90deg, var(--brand), #0ea5e9); color:white}
-
-    /* Utility */
-    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
-
-    /* Footer */
-    footer{border-top:1px solid rgba(255,255,255,.08); padding:2rem 1rem; text-align:center; color:var(--muted)}
-  </style>
+/* Mobile nav */
+@media(max-width:860px){
+  .nav-links{display:none;position:absolute;top:58px;left:0;right:0;padding:10px;background:#0b1220;border-bottom:1px solid var(--ring)}
+  .nav-links.open{display:flex;flex-direction:column;gap:8px}
+  .hamburger{display:block;background:#111827;border:1px solid var(--ring);padding:8px 10px;border-radius:10px;color:var(--text)}
+}
+</style>
 </head>
 <body>
-  <!-- ===================== HEADER ===================== -->
-  <header class="header">
-    <nav class="nav" aria-label="Primary">
-      <a class="logo" href="#"><i class="fa-solid fa-feather-pointed"></i><span>Three-Piece Shop</span></a>
-      <div class="spacer"></div>
 
-      <!-- Desktop Nav -->
-      <div class="nav-links desktop-only" role="menubar">
-        <a href="#home" role="menuitem">হোম</a>
-        <a href="#collection" role="menuitem">থ্রি পিস</a>
-        <div class="dropdown" id="dd-products">
-          <button class="chip" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> অন্যান্য প্রোডাক্ট</button>
-          <div class="dropdown-menu" role="menu" aria-label="অন্যান্য">
-            <a href="#" role="menuitem">শাড়ি</a>
-            <a href="#" role="menuitem">গহনা</a>
-          </div>
-        </div>
-        <button id="btnCommission" class="btn btn-outline btn-commission" title="Commission View"><i class="fa-solid fa-hand-holding-dollar"></i><span>Commission View</span></button>
-      </div>
+<!-- Header -->
+<header class="header">
+  <nav class="nav">
+    <a class="logo" href="#"><i class="fa-solid fa-shirt"></i> Three-Piece Shop</a>
 
-      <!-- Mobile hamburger -->
-      <button class="hamburger" id="btnHamburger" aria-label="Open Menu"><i class="fa-solid fa-bars"></i></button>
-    </nav>
-    <!-- Mobile Menu Panel -->
-    <div class="mobile-menu" id="mobileMenu">
+    <button id="hamburger" class="hamburger"><i class="fa-solid fa-bars"></i></button>
+
+    <div id="navLinks" class="nav-links">
       <a href="#home">হোম</a>
       <a href="#collection">থ্রি পিস</a>
-      <div class="dropdown" id="dd-products-m">
-        <button class="chip" style="width:100%"><i class="fa-solid fa-chevron-down"></i> অন্যান্য প্রোডাক্ট</button>
-        <div class="dropdown-menu" style="position:static; display:none; border:none; box-shadow:none">
-          <a href="#">শাড়ি</a>
-          <a href="#">গহনা</a>
+
+      <div class="dropdown">
+        <a href="javascript:void(0)">অন্যান্য প্রোডাক্ট <i class="fa-solid fa-angle-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="#collection" data-go="শাড়ি">শাড়ি</a>
+          <a href="#collection" data-go="গহনা">গহনা</a>
         </div>
       </div>
-      <button id="btnCommissionM" class="btn btn-outline btn-commission" style="margin: .75rem">Commission View</button>
+
+      <button id="commissionToggle" class="btn btn-accent">
+        <i class="fa-solid fa-lock"></i> Commission View
+      </button>
     </div>
-  </header>
+  </nav>
+</header>
 
-  <!-- ===================== SLIDER ===================== -->
-  <section id="home" class="slider" aria-label="Featured Slider">
-    <div class="slider-track" id="sliderTrack">
-      <!-- Slides will be injected from data.json (first few products) -->
-    </div>
-    <div class="slider-dots" id="sliderDots" aria-hidden="true"></div>
-  </section>
+<!-- Slider -->
+<section id="home" class="slider">
+  <div id="slides" class="slides"></div>
+</section>
 
-  <!-- ===================== COLLECTION ===================== -->
-  <section id="collection" class="section" aria-labelledby="collectionHeading">
-    <h2 id="collectionHeading">আমাদের কালেকশন</h2>
-    <div class="filters" id="filters">
-      <!-- Filter chips -->
-      <button class="chip active" data-cat="all">সব</button>
-      <button class="chip" data-cat="কটন">কটন</button>
-      <button class="chip" data-cat="সিল্ক">সিল্ক</button>
-      <button class="chip" data-cat="লিলেন">লিলেন</button>
-    </div>
+<!-- Filters -->
+<div class="filters">
+  <button class="filter-btn active" data-cat="__all">সব</button>
+  <span class="badge" id="countBadge">0টি প্রোডাক্ট</span>
+</div>
 
-    <div class="grid" id="productGrid" aria-live="polite">
-      <!-- Product cards will be injected from data.json -->
-    </div>
-  </section>
+<!-- Products Grid -->
+<section id="collection" class="grid" aria-live="polite"></section>
 
-  <footer>
-    © <span id="year"></span> Three-Piece Shop — সুন্দর, আধুনিক ও বিশ্বস্ত কালেকশন
-  </footer>
+<!-- Commission Table -->
+<section id="commissionWrap" class="comm-wrap">
+  <h3 style="margin:6px 0 10px">Commission Summary</h3>
+  <div style="overflow:auto;border-radius:14px">
+    <table class="table" id="commissionTable">
+      <thead>
+        <tr><th>নাম</th><th>ক্যাটাগরি</th><th>দাম</th><th>কমিশন</th></tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot><tr><td colspan="3">মোট কমিশন</td><td id="totalCommission">৳0.00</td></tr></tfoot>
+    </table>
+  </div>
+</section>
 
-  <script>
-    // =====================
-    // Utilities
-    // =====================
-    const $ = function(sel, root){ return (root||document).querySelector(sel); };
-    const $$ = function(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); };
+<footer class="footer">© Three-Piece Shop</footer>
 
-    const state = {
-      products: [],
-      filtered: [],
-      commissionVisible: false,
-      authenticated: false,
-      sliderIndex: 0,
-      sliderTimer: null
-    };
+<script>
+(function(){
+  'use strict';
 
-    // =====================
-    // Navbar interactions
-    // =====================
-    (function initNavbar(){
-      const dd = $('#dd-products');
-      const ddBtn = dd.querySelector('button');
-      ddBtn.addEventListener('click', function(){
-        dd.classList.toggle('open');
-        ddBtn.setAttribute('aria-expanded', dd.classList.contains('open'));
-      });
+  // ---- State ----
+  var DATA_URL = 'data.json';             // একই ফোল্ডারে data.json রাখুন
+  var store = { products: [], pass: '', commissionVisible:false, categories:new Set() };
+  var sliderIndex = 0, sliderTimer;
 
-      const m = $('#dd-products-m');
-      const mBtn = m.querySelector('button');
-      const mMenu = m.querySelector('.dropdown-menu');
-      mBtn.addEventListener('click', function(){
-        mMenu.style.display = (mMenu.style.display==='flex' || mMenu.style.display==='block') ? 'none' : 'block';
-      });
+  // ---- Elements ----
+  var slidesEl = document.getElementById('slides');
+  var gridEl = document.getElementById('collection');
+  var filtersEl = document.querySelector('.filters');
+  var countBadge = document.getElementById('countBadge');
+  var commissionBtn = document.getElementById('commissionToggle');
+  var commissionWrap = document.getElementById('commissionWrap');
+  var commBody = document.querySelector('#commissionTable tbody');
+  var totalComm = document.getElementById('totalCommission');
+  var navLinks = document.getElementById('navLinks');
+  var hamburger = document.getElementById('hamburger');
 
-      $('#btnHamburger').addEventListener('click', function(){
-        const panel = $('#mobileMenu');
-        panel.style.display = panel.style.display==='block' ? 'none' : 'block';
-      });
+  // ---- Helpers ----
+  function money(n){ return '৳' + Number(n||0).toFixed(2); }
 
-      // Commission buttons (desktop + mobile)
-      $('#btnCommission').addEventListener('click', toggleCommission);
-      $('#btnCommissionM').addEventListener('click', toggleCommission);
-    })();
+  function buildSlider(items){
+    slidesEl.innerHTML = '';
+    var featured = items.slice(0, Math.min(5, items.length));
+    for(var i=0;i<featured.length;i++){
+      var p=featured[i];
+      var s=document.createElement('div');
+      s.className='slide';
+      var img=document.createElement('img');
+      img.src=p.image; img.alt=p.name;
+      s.appendChild(img);
+      var cap=document.createElement('div');
+      cap.className='caption';
+      cap.innerHTML='<strong>'+escapeHtml(p.name)+'</strong> &middot; '+money(p.price);
+      s.appendChild(cap);
+      slidesEl.appendChild(s);
+    }
+    // autoplay
+    clearInterval(sliderTimer);
+    sliderIndex=0;
+    sliderTimer=setInterval(function(){
+      if(featured.length<=1) return;
+      sliderIndex=(sliderIndex+1)%featured.length;
+      slidesEl.style.transform='translateX(' + (-sliderIndex*100) + '%)';
+    }, 3500);
+  }
 
-    // =====================
-    // Fetch products from data.json
-    // =====================
-    async function loadProducts(){
-      try{
-        const res = await fetch('data.json', {cache:'no-store'});
-        if(!res.ok) throw new Error('ডেটা লোড করা যায়নি');
-        const data = await res.json();
-        // Expecting: [{ name, price, commission, image, category }]
-        state.products = Array.isArray(data) ? data : [];
-        state.filtered = state.products.slice();
-        renderGrid(state.filtered);
-        buildSliderFromProducts(state.products);
-      }catch(err){
-        console.error(err);
-        // Fallback demo data so the UI still works for first run
-        state.products = [
-          {name:'Cotton Premium - A', price:1200, commission:150, image:'https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop', category:'কটন'},
-          {name:'Silk Classic - B', price:2200, commission:220, image:'https://images.unsplash.com/photo-1520975867597-0f6f4c4a0431?q=80&w=1200&auto=format&fit=crop', category:'সিল্ক'},
-          {name:'Lilen Soft - C', price:1500, commission:170, image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop', category:'লিলেন'},
-          {name:'Silk Bridal - D', price:3200, commission:300, image:'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop', category:'সিল্ক'},
-          {name:'Cotton Summer - E', price:1100, commission:140, image:'https://images.unsplash.com/photo-1475180098004-ca77a66827be?q=80&w=1200&auto=format&fit=crop', category:'কটন'}
-        ];
-        state.filtered = state.products.slice();
-        renderGrid(state.filtered);
-        buildSliderFromProducts(state.products);
+  function buildFilters(products){
+    var cats = new Set();
+    for(var i=0;i<products.length;i++){ cats.add(products[i].category); }
+    store.categories = cats;
+
+    // remove old except first (সব)
+    var btns = Array.prototype.slice.call(filtersEl.querySelectorAll('.filter-btn'));
+    for(var i=1;i<btns.length;i++){ btns[i].remove(); }
+
+    cats.forEach(function(cat){
+      var b=document.createElement('button');
+      b.className='filter-btn';
+      b.dataset.cat=cat;
+      b.textContent=cat;
+      filtersEl.insertBefore(b, countBadge);
+    });
+  }
+
+  function renderGrid(products){
+    var html='';
+    for(var i=0;i<products.length;i++){
+      var p=products[i];
+      html += '<article class="card fade-show" data-cat="'+escapeHtml(p.category)+'">' +
+                '<div class="img-wrap"><img src="'+escapeHtml(p.image)+'" alt="'+escapeHtml(p.name)+'"></div>' +
+                '<div class="content">' +
+                  '<div class="price">'+escapeHtml(p.name)+'</div>' +
+                  '<div class="muted" style="color:#94a3b8">দাম: '+ money(p.price) +'</div>' +
+                  '<div class="commission">কমিশন: '+ money(p.commission) +'</div>' +
+                  '<div class="actions">' +
+                    '<button class="action-btn">Details</button>' +
+                    '<button class="action-btn">Order</button>' +
+                  '</div>' +
+                '</div>' +
+              '</article>';
+    }
+    gridEl.innerHTML = html;
+    applyCommissionVisibility();
+    countBadge.textContent = products.length + 'টি প্রোডাক্ট';
+  }
+
+  function filterBy(cat){
+    var cards = gridEl.querySelectorAll('.card');
+    for(var i=0;i<cards.length;i++){
+      var el=cards[i];
+      var match = (cat==='__all') || (el.getAttribute('data-cat')===cat);
+      if(match){
+        el.classList.remove('fade-hide'); el.classList.add('fade-show');
+      }else{
+        el.classList.add('fade-hide'); el.classList.remove('fade-show');
       }
     }
+  }
 
-    // =====================
-    // Render Grid
-    // =====================
-    function currency(n){ return '৳' + Number(n).toFixed(2); }
-
-    function createCard(p){
-      var card = document.createElement('article');
-      card.className = 'card';
-      card.setAttribute('data-cat', p.category||'');
-
-      var thumb = document.createElement('div'); thumb.className = 'thumb';
-      var img = document.createElement('img'); img.loading = 'lazy'; img.alt = p.name || 'Product'; img.src = p.image;
-      // Important: never crop top/bottom (object-fit: contain already set in CSS)
-      thumb.appendChild(img);
-
-      var body = document.createElement('div'); body.className = 'card-body';
-      var title = document.createElement('h3'); title.className='title'; title.textContent = p.name || 'Unnamed';
-      var price = document.createElement('div'); price.className='price'; price.textContent = currency(p.price||0);
-
-      var meta = document.createElement('div'); meta.className='meta';
-      var commission = document.createElement('span'); commission.className='commission' + (state.commissionVisible? '' : ' hidden'); commission.innerHTML = '<i class="fa-solid fa-coins"></i> কমিশন: ' + currency(p.commission||0);
-      var btn = document.createElement('button'); btn.className='btn btn-primary'; btn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> Order';
-      btn.addEventListener('click', function(){ alert('অর্ডার ফিচার ডেমো: '+ (p.name||'')); });
-
-      meta.appendChild(commission); meta.appendChild(btn);
-      body.appendChild(title); body.appendChild(price); body.appendChild(meta);
-
-      card.appendChild(thumb); card.appendChild(body);
-      return card;
+  function applyCommissionVisibility(){
+    var cards = gridEl.querySelectorAll('.card');
+    for(var i=0;i<cards.length;i++){
+      if(store.commissionVisible){ cards[i].classList.add('show-commission'); }
+      else { cards[i].classList.remove('show-commission'); }
     }
+    commissionWrap.classList.toggle('visible', store.commissionVisible);
+    commissionBtn.innerHTML = store.commissionVisible
+      ? '<i class="fa-solid fa-eye-slash"></i> Hide Commission'
+      : '<i class="fa-solid fa-lock"></i> Commission View';
+  }
 
-    function renderGrid(list){
-      var grid = $('#productGrid');
-      grid.innerHTML = '';
-      list.forEach(function(p, i){
-        var card = createCard(p);
-        // Staggered animation delay
-        card.style.animationDelay = (i*40)+'ms';
-        grid.appendChild(card);
-      });
+  function buildCommissionTable(){
+    if(!store.commissionVisible){ commBody.innerHTML=''; totalComm.textContent='৳0.00'; return; }
+    var rows=''; var sum=0;
+    for(var i=0;i<store.products.length;i++){
+      var p=store.products[i];
+      rows += '<tr><td>'+escapeHtml(p.name)+'</td><td>'+escapeHtml(p.category)+'</td><td>'+money(p.price)+'</td><td>'+money(p.commission)+'</td></tr>';
+      sum += Number(p.commission||0);
     }
+    commBody.innerHTML = rows;
+    totalComm.textContent = money(sum);
+  }
 
-    // =====================
-    // Filters
-    // =====================
-    (function initFilters(){
-      $('#filters').addEventListener('click', function(e){
-        var t = e.target;
-        if(!t.classList.contains('chip')) return;
-        $$('.chip', this).forEach(function(c){ c.classList.remove('active'); });
-        t.classList.add('active');
-        var cat = t.getAttribute('data-cat');
-        if(cat==='all'){ state.filtered = state.products.slice(); }
-        else {
-          state.filtered = state.products.filter(function(p){ return (p.category||'').trim() === cat; });
-        }
-        // Re-render with simple fade/translate animation provided by .card keyframes
-        renderGrid(state.filtered);
-      });
-    })();
+  function escapeHtml(str){
+    if(!str && str!==0) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;').replace(/'/g,'&#039;');
+  }
 
-    // =====================
-    // Commission Toggle (password protected)
-    // =====================
-    function setCommissionUI(){
-      var btns = [$('#btnCommission'), $('#btnCommissionM')];
-      for(var i=0;i<btns.length;i++){
-        var b = btns[i];
-        if(!b) continue;
-        if(state.commissionVisible){ b.classList.add('active'); b.innerHTML = '<i class="fa-solid fa-eye-slash"></i> <span>Hide Commission</span>'; }
-        else { b.classList.remove('active'); b.innerHTML = '<i class="fa-solid fa-hand-holding-dollar"></i> <span>Commission View</span>'; }
+  // ---- Events ----
+  filtersEl.addEventListener('click', function(e){
+    var t=e.target; if(!t.classList.contains('filter-btn')) return;
+    var act = filtersEl.querySelector('.filter-btn.active'); if(act) act.classList.remove('active');
+    t.classList.add('active');
+    filterBy(t.dataset.cat);
+  });
+
+  document.querySelectorAll('.dropdown-menu a').forEach(function(a){
+    a.addEventListener('click', function(evt){
+      evt.preventDefault();
+      // jump to collection and filter by this category
+      var cat = a.getAttribute('data-go');
+      document.querySelector('[data-cat="'+cat+'"]') && filterBy(cat);
+      document.getElementById('collection').scrollIntoView({behavior:'smooth'});
+      // also set active chip
+      var allBtns = filtersEl.querySelectorAll('.filter-btn');
+      for(var i=0;i<allBtns.length;i++){
+        allBtns[i].classList.toggle('active', allBtns[i].dataset.cat===cat);
       }
-      // Show/Hide on cards
-      $$('.commission').forEach(function(el){
-        if(state.commissionVisible) el.classList.remove('hidden');
-        else el.classList.add('hidden');
-      });
-    }
+    });
+  });
 
-    function toggleCommission(){
-      if(!state.commissionVisible){
-        if(!state.authenticated){
-          var pass = prompt('রিসেলার পাসওয়ার্ড দিন');
-          if(pass === null) return; // cancelled
-          if(pass !== '1234'){ alert('ভুল পাসওয়ার্ড!'); return; }
-          state.authenticated = true; // First time success
-        }
-        state.commissionVisible = true;
-      } else {
-        state.commissionVisible = false; // hide without password
+  commissionBtn.addEventListener('click', function(){
+    if(!store.commissionVisible){
+      var input = prompt('কমিশন পাসওয়ার্ড দিন:');
+      if(input===null) return;
+      if(input === store.pass){
+        store.commissionVisible = true;
+        applyCommissionVisibility();
+        buildCommissionTable();
+      }else{
+        alert('ভুল পাসওয়ার্ড!');
       }
-      setCommissionUI();
+    }else{
+      store.commissionVisible = false;
+      applyCommissionVisibility();
+      buildCommissionTable();
+      window.scrollTo({top:0, behavior:'smooth'});
     }
+  });
 
-    // =====================
-    // Slider (autoplay)
-    // =====================
-    function buildSliderFromProducts(items){
-      var track = $('#sliderTrack');
-      var dots = $('#sliderDots');
-      track.innerHTML = ''; dots.innerHTML = '';
-      var slides = items.slice(0,5); // pick first 5 as featured
-      if(slides.length===0){
-        // Small fallback slide
-        var s = document.createElement('div'); s.className='slide';
-        s.innerHTML = '<img alt="Three-Piece" src="https://images.unsplash.com/photo-1520975867597-0f6f4c4a0431?q=80&w=1600&auto=format&fit=crop"><div class="slide-caption"><h3>সেরা কালেকশন</h3><span class="badge">New</span></div>';
-        track.appendChild(s);
-        return;
+  hamburger.addEventListener('click', function(){
+    navLinks.classList.toggle('open');
+  });
+
+  // ---- Load data.json ----
+  fetch(DATA_URL)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      // Accept two shapes: {commissionPassword, products:[...]}  OR  [...]
+      if(Array.isArray(data)){
+        store.products = data;
+        store.pass = '1234'; // fallback
+      }else{
+        store.products = data.products || [];
+        store.pass = (data.commissionPassword || '1234') + ''; // ensure string
       }
-      for(var i=0;i<slides.length;i++){
-        var p = slides[i];
-        var slide = document.createElement('div'); slide.className='slide';
-        slide.innerHTML = '<img alt="'+(p.name||'Product')+'" src="'+p.image+'"/>'+
-                          '<div class="slide-caption"><h3>'+(p.name||'')+'</h3><span class="badge">'+ (p.category||'') +'</span></div>';
-        track.appendChild(slide);
-        var dot = document.createElement('button'); dot.setAttribute('aria-label', 'Go to slide '+(i+1));
-        (function(idx){ dot.addEventListener('click', function(){ goSlide(idx); }); })(i);
-        dots.appendChild(dot);
-      }
-      goSlide(0);
-      startAutoplay();
-      track.addEventListener('mouseenter', stopAutoplay);
-      track.addEventListener('mouseleave', startAutoplay);
-    }
 
-    function goSlide(index){
-      var track = $('#sliderTrack');
-      var total = track.children.length;
-      if(total===0) return;
-      state.sliderIndex = (index+total)%total;
-      track.style.transform = 'translateX(' + (-100*state.sliderIndex) + '%)';
-      $$('#sliderDots button').forEach(function(b, i){ b.classList.toggle('active', i===state.sliderIndex); });
-    }
+      buildFilters(store.products);
+      buildSlider(store.products);
+      renderGrid(store.products);
+      filterBy('__all');
 
-    function startAutoplay(){
-      stopAutoplay();
-      state.sliderTimer = setInterval(function(){ goSlide(state.sliderIndex+1); }, 3500);
-    }
-    function stopAutoplay(){ if(state.sliderTimer) { clearInterval(state.sliderTimer); state.sliderTimer=null; } }
+      // if fewer than 1 product, still keep slider sane
+      if(store.products.length<=1){ slidesEl.style.transform='translateX(0)'; }
+    })
+    .catch(function(err){
+      console.error(err);
+      gridEl.innerHTML = '<div class=\"card\" style=\"padding:14px\">ডাটা লোড করা যায়নি। নিশ্চিত করুন <code>data.json</code> ফাইলটি একই ফোল্ডারে আছে।</div>';
+    });
 
-    // =====================
-    // Boot
-    // =====================
-    (function boot(){
-      $('#year').textContent = new Date().getFullYear();
-      loadProducts();
-    })();
-  </script>
+})();
+</script>
 </body>
 </html>
