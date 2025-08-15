@@ -1,358 +1,87 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>Three-Piece Shop</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<meta charset="UTF-8">
+<title>থ্রি-পিস পণ্য তালিকা</title>
 <style>
-:root{
-  --bg:#0b1220; --card:#0f172a; --muted:#94a3b8; --text:#e2e8f0; --brand:#22d3ee; --accent:#38bdf8; --ok:#22c55e; --danger:#ef4444;
-  --ring:#1e293b; --chip:#111827; --chipText:#cbd5e1;
-  --grid-gap:14px; --img-h:260px;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:'Noto Sans',system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#070c18 0%, #0b1220 100%);color:var(--text);line-height:1.5;}
-
-/* Header / Nav */
-.header{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.75);backdrop-filter:blur(8px);border-bottom:1px solid #0b1730}
-.nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;}
-.logo{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:700}
-.logo i{color:var(--brand)}
-.nav-links{display:flex;align-items:center;gap:14px}
-.nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
-.nav-links a:hover{background:rgba(56,189,248,.12)}
-.dropdown{position:relative}
-.dropdown > a{display:flex;align-items:center;gap:6px}
-.dropdown-menu{position:absolute;top:110%;right:0;background:#0b1220;border:1px solid var(--ring);border-radius:12px;min-width:180px;padding:6px;display:none;box-shadow:0 8px 30px rgba(0,0,0,.35)}
-.dropdown-menu a{display:block;padding:8px 10px;border-radius:8px}
-.dropdown:hover .dropdown-menu{display:block}
-.btn{border:1px solid var(--ring);background:#111827;color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
-.btn:hover{border-color:#334155}
-.btn-accent{background:linear-gradient(90deg,#06b6d4,#3b82f6);border:none}
-.btn-accent:hover{opacity:.95}
-.hamburger{display:none}
-
-/* Hero Slider */
-.slider{max-width:1200px;margin:14px auto 0;overflow:hidden;border-radius:16px;border:1px solid var(--ring);background:#0b1220}
-.slides{display:flex;transition:transform .6s ease}
-.slide{min-width:100%;height:320px;position:relative;display:flex;align-items:center;justify-content:center;background:#0b1220}
-.slide img{width:100%;height:100%;object-fit:cover;opacity:.85}
-.slide .caption{position:absolute;bottom:16px;left:16px;background:rgba(2,6,23,.6);padding:8px 12px;border-radius:10px}
-
-/* Filters */
-.filters{max-width:1200px;margin:16px auto 0;display:flex;flex-wrap:wrap;gap:8px;padding:0 8px}
-.filter-btn{background:#111827;border:1px solid var(--ring);color:var(--text);padding:6px 12px;border-radius:999px;cursor:pointer}
-.filter-btn.active{background:var(--accent);border-color:transparent}
-.badge{background:#0b1220;color:var(--chipText);padding:2px 8px;border-radius:999px;border:1px solid var(--ring);}
-
-/* Grid */
-.grid{max-width:1200px;margin:12px auto;padding:8px;display:grid;gap:var(--grid-gap);grid-template-columns:repeat(1,minmax(0,1fr))}
-@media(min-width:620px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--card);border:1px solid var(--ring);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease, box-shadow .25s ease; box-shadow:0 10px 30px rgba(0,0,0,.15)}
-.card:hover{transform:translateY(-3px)}
-.img-wrap{height:var(--img-h);display:flex;align-items:flex-start;justify-content:center;background:#0b1220}
-.img-wrap img{width:100%;height:100%;object-fit:contain;object-position:top}
-.content{padding:12px}
-.price{font-weight:700}
-.commission{display:none;margin-top:6px;color:#a7f3d0}
-.card.show-commission .commission{display:block}
-.actions{display:flex;gap:8px;margin-top:10px}
-.action-btn{flex:1;padding:8px;border-radius:10px;border:1px solid var(--ring);background:#111827;color:var(--text);cursor:pointer}
-.action-btn:hover{border-color:#334155}
-
-/* Filter animation */
-.card.fade-hide{opacity:0;transform:scale(.96);pointer-events:none;transition:opacity .25s ease, transform .25s ease}
-.card.fade-show{opacity:1;transform:scale(1)}
-
-/* Commission table */
-.comm-wrap{max-width:1200px;margin:20px auto;padding:8px;display:none}
-.comm-wrap.visible{display:block}
-.table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--ring);border-radius:14px;overflow:hidden}
-.table th,.table td{border-bottom:1px solid var(--ring);padding:10px;text-align:left}
-.table th{background:#0b1220}
-tfoot td{font-weight:700}
-
-/* Footer */
-.footer{max-width:1200px;margin:28px auto 40px;padding:8px;color:var(--muted);text-align:center}
-
-/* Mobile nav */
-@media(max-width:860px){
-  .nav-links{display:none;position:absolute;top:58px;left:0;right:0;padding:10px;background:#0b1220;border-bottom:1px solid var(--ring)}
-  .nav-links.open{display:flex;flex-direction:column;gap:8px}
-  .hamburger{display:block;background:#111827;border:1px solid var(--ring);padding:8px 10px;border-radius:10px;color:var(--text)}
-}
+  body { font-family: Arial, sans-serif; padding: 20px; background: #f0f2f5; max-width: 1000px; margin: auto; }
+  h1 { text-align: center; color: #333; }
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+  th { background: #4CAF50; color: white; }
+  button { padding: 5px 10px; margin: 2px; cursor: pointer; border: none; border-radius: 3px; background: #007bff; color: white; }
+  button:hover { background: #0069d9; }
 </style>
 </head>
 <body>
+<h1>থ্রি-পিস পণ্যের তালিকা</h1>
 
-<!-- Header -->
-<header class="header">
-  <nav class="nav">
-    <a class="logo" href="#"><i class="fa-solid fa-shirt"></i> Three-Piece Shop</a>
+<table id="productTable">
+  <thead>
+    <tr>
+      <th>নাম</th>
+      <th>ক্যাটাগরি</th>
+      <th>দাম</th>
+      <th>ছবি</th>
+      <th>বর্ণনা</th>
+      <th>কমিশন (%)</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-    <button id="hamburger" class="hamburger"><i class="fa-solid fa-bars"></i></button>
-
-    <div id="navLinks" class="nav-links">
-      <a href="#home">হোম</a>
-      <a href="#collection">থ্রি পিস</a>
-
-      <div class="dropdown">
-        <a href="javascript:void(0)">অন্যান্য প্রোডাক্ট <i class="fa-solid fa-angle-down"></i></a>
-        <div class="dropdown-menu">
-          <a href="#collection" data-go="শাড়ি">শাড়ি</a>
-          <a href="#collection" data-go="গহনা">গহনা</a>
-        </div>
-      </div>
-
-      <button id="commissionToggle" class="btn btn-accent">
-        <i class="fa-solid fa-lock"></i> Commission View
-      </button>
-    </div>
-  </nav>
-</header>
-
-<!-- Slider -->
-<section id="home" class="slider">
-  <div id="slides" class="slides"></div>
-</section>
-
-<!-- Filters -->
-<div class="filters">
-  <button class="filter-btn active" data-cat="__all">সব</button>
-  <span class="badge" id="countBadge">0টি প্রোডাক্ট</span>
-</div>
-
-<!-- Products Grid -->
-<section id="collection" class="grid" aria-live="polite"></section>
-
-<!-- Commission Table -->
-<section id="commissionWrap" class="comm-wrap">
-  <h3 style="margin:6px 0 10px">Commission Summary</h3>
-  <div style="overflow:auto;border-radius:14px">
-    <table class="table" id="commissionTable">
-      <thead>
-        <tr><th>নাম</th><th>ক্যাটাগরি</th><th>দাম</th><th>কমিশন</th></tr>
-      </thead>
-      <tbody></tbody>
-      <tfoot><tr><td colspan="3">মোট কমিশন</td><td id="totalCommission">৳0.00</td></tr></tfoot>
-    </table>
-  </div>
-</section>
-
-<footer class="footer">© Three-Piece Shop</footer>
+<button onclick="viewCommission()">Commission View</button>
 
 <script>
-(function(){
-  'use strict';
-
-  // ---- State ----
-  var DATA_URL = 'data.json';             // একই ফোল্ডারে data.json রাখুন
-  var store = { products: [], pass: '', commissionVisible:false, categories:new Set() };
-  var sliderIndex = 0, sliderTimer;
-
-  // ---- Elements ----
-  var slidesEl = document.getElementById('slides');
-  var gridEl = document.getElementById('collection');
-  var filtersEl = document.querySelector('.filters');
-  var countBadge = document.getElementById('countBadge');
-  var commissionBtn = document.getElementById('commissionToggle');
-  var commissionWrap = document.getElementById('commissionWrap');
-  var commBody = document.querySelector('#commissionTable tbody');
-  var totalComm = document.getElementById('totalCommission');
-  var navLinks = document.getElementById('navLinks');
-  var hamburger = document.getElementById('hamburger');
-
-  // ---- Helpers ----
-  function money(n){ return '৳' + Number(n||0).toFixed(2); }
-
-  function buildSlider(items){
-    slidesEl.innerHTML = '';
-    var featured = items.slice(0, Math.min(5, items.length));
-    for(var i=0;i<featured.length;i++){
-      var p=featured[i];
-      var s=document.createElement('div');
-      s.className='slide';
-      var img=document.createElement('img');
-      img.src=p.image; img.alt=p.name;
-      s.appendChild(img);
-      var cap=document.createElement('div');
-      cap.className='caption';
-      cap.innerHTML='<strong>'+escapeHtml(p.name)+'</strong> &middot; '+money(p.price);
-      s.appendChild(cap);
-      slidesEl.appendChild(s);
-    }
-    // autoplay
-    clearInterval(sliderTimer);
-    sliderIndex=0;
-    sliderTimer=setInterval(function(){
-      if(featured.length<=1) return;
-      sliderIndex=(sliderIndex+1)%featured.length;
-      slidesEl.style.transform='translateX(' + (-sliderIndex*100) + '%)';
-    }, 3500);
+  // GitHub থেকে JSON ফাইল লোড
+  async function loadProducts() {
+    const response = await fetch('products.json'); // তোমার JSON ফাইলের নাম
+    const data = await response.json();
+    return data.filter(p => p.category === "Three-Piece");
   }
 
-  function buildFilters(products){
-    var cats = new Set();
-    for(var i=0;i<products.length;i++){ cats.add(products[i].category); }
-    store.categories = cats;
-
-    // remove old except first (সব)
-    var btns = Array.prototype.slice.call(filtersEl.querySelectorAll('.filter-btn'));
-    for(var i=1;i<btns.length;i++){ btns[i].remove(); }
-
-    cats.forEach(function(cat){
-      var b=document.createElement('button');
-      b.className='filter-btn';
-      b.dataset.cat=cat;
-      b.textContent=cat;
-      filtersEl.insertBefore(b, countBadge);
+  function displayProducts(products) {
+    const tbody = document.querySelector('#productTable tbody');
+    tbody.innerHTML = '';
+    products.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${p.name}</td>
+        <td>${p.category}</td>
+        <td>${p.price}</td>
+        <td><img src="${p.image}" alt="${p.name}" width="80"></td>
+        <td>${p.description}</td>
+        <td>***</td>
+      `;
+      tbody.appendChild(tr);
     });
   }
 
-  function renderGrid(products){
-    var html='';
-    for(var i=0;i<products.length;i++){
-      var p=products[i];
-      html += '<article class="card fade-show" data-cat="'+escapeHtml(p.category)+'">' +
-                '<div class="img-wrap"><img src="'+escapeHtml(p.image)+'" alt="'+escapeHtml(p.name)+'"></div>' +
-                '<div class="content">' +
-                  '<div class="price">'+escapeHtml(p.name)+'</div>' +
-                  '<div class="muted" style="color:#94a3b8">দাম: '+ money(p.price) +'</div>' +
-                  '<div class="commission">কমিশন: '+ money(p.commission) +'</div>' +
-                  '<div class="actions">' +
-                    '<button class="action-btn">Details</button>' +
-                    '<button class="action-btn">Order</button>' +
-                  '</div>' +
-                '</div>' +
-              '</article>';
-    }
-    gridEl.innerHTML = html;
-    applyCommissionVisibility();
-    countBadge.textContent = products.length + 'টি প্রোডাক্ট';
+  async function init() {
+    window.products = await loadProducts();
+    displayProducts(window.products);
   }
 
-  function filterBy(cat){
-    var cards = gridEl.querySelectorAll('.card');
-    for(var i=0;i<cards.length;i++){
-      var el=cards[i];
-      var match = (cat==='__all') || (el.getAttribute('data-cat')===cat);
-      if(match){
-        el.classList.remove('fade-hide'); el.classList.add('fade-show');
-      }else{
-        el.classList.add('fade-hide'); el.classList.remove('fade-show');
-      }
-    }
-  }
-
-  function applyCommissionVisibility(){
-    var cards = gridEl.querySelectorAll('.card');
-    for(var i=0;i<cards.length;i++){
-      if(store.commissionVisible){ cards[i].classList.add('show-commission'); }
-      else { cards[i].classList.remove('show-commission'); }
-    }
-    commissionWrap.classList.toggle('visible', store.commissionVisible);
-    commissionBtn.innerHTML = store.commissionVisible
-      ? '<i class="fa-solid fa-eye-slash"></i> Hide Commission'
-      : '<i class="fa-solid fa-lock"></i> Commission View';
-  }
-
-  function buildCommissionTable(){
-    if(!store.commissionVisible){ commBody.innerHTML=''; totalComm.textContent='৳0.00'; return; }
-    var rows=''; var sum=0;
-    for(var i=0;i<store.products.length;i++){
-      var p=store.products[i];
-      rows += '<tr><td>'+escapeHtml(p.name)+'</td><td>'+escapeHtml(p.category)+'</td><td>'+money(p.price)+'</td><td>'+money(p.commission)+'</td></tr>';
-      sum += Number(p.commission||0);
-    }
-    commBody.innerHTML = rows;
-    totalComm.textContent = money(sum);
-  }
-
-  function escapeHtml(str){
-    if(!str && str!==0) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;').replace(/'/g,'&#039;');
-  }
-
-  // ---- Events ----
-  filtersEl.addEventListener('click', function(e){
-    var t=e.target; if(!t.classList.contains('filter-btn')) return;
-    var act = filtersEl.querySelector('.filter-btn.active'); if(act) act.classList.remove('active');
-    t.classList.add('active');
-    filterBy(t.dataset.cat);
-  });
-
-  document.querySelectorAll('.dropdown-menu a').forEach(function(a){
-    a.addEventListener('click', function(evt){
-      evt.preventDefault();
-      // jump to collection and filter by this category
-      var cat = a.getAttribute('data-go');
-      document.querySelector('[data-cat="'+cat+'"]') && filterBy(cat);
-      document.getElementById('collection').scrollIntoView({behavior:'smooth'});
-      // also set active chip
-      var allBtns = filtersEl.querySelectorAll('.filter-btn');
-      for(var i=0;i<allBtns.length;i++){
-        allBtns[i].classList.toggle('active', allBtns[i].dataset.cat===cat);
-      }
+  function viewCommission() {
+    const pass = prompt("কমিশন পাসওয়ার্ড লিখুন:");
+    const tbody = document.querySelector('#productTable tbody');
+    tbody.innerHTML = '';
+    window.products.forEach(p => {
+      const tr = document.createElement('tr');
+      const commissionText = (p.commissionPassword === pass) ? p.commission + "%" : "***";
+      tr.innerHTML = `
+        <td>${p.name}</td>
+        <td>${p.category}</td>
+        <td>${p.price}</td>
+        <td><img src="${p.image}" alt="${p.name}" width="80"></td>
+        <td>${p.description}</td>
+        <td>${commissionText}</td>
+      `;
+      tbody.appendChild(tr);
     });
-  });
+  }
 
-  commissionBtn.addEventListener('click', function(){
-    if(!store.commissionVisible){
-      var input = prompt('কমিশন পাসওয়ার্ড দিন:');
-      if(input===null) return;
-      if(input === store.pass){
-        store.commissionVisible = true;
-        applyCommissionVisibility();
-        buildCommissionTable();
-      }else{
-        alert('ভুল পাসওয়ার্ড!');
-      }
-    }else{
-      store.commissionVisible = false;
-      applyCommissionVisibility();
-      buildCommissionTable();
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-  });
-
-  hamburger.addEventListener('click', function(){
-    navLinks.classList.toggle('open');
-  });
-
-  // ---- Load data.json ----
-  fetch(DATA_URL)
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      // Accept two shapes: {commissionPassword, products:[...]}  OR  [...]
-      if(Array.isArray(data)){
-        store.products = data;
-        store.pass = '1234'; // fallback
-      }else{
-        store.products = data.products || [];
-        store.pass = (data.commissionPassword || '1234') + ''; // ensure string
-      }
-
-      buildFilters(store.products);
-      buildSlider(store.products);
-      renderGrid(store.products);
-      filterBy('__all');
-
-      // if fewer than 1 product, still keep slider sane
-      if(store.products.length<=1){ slidesEl.style.transform='translateX(0)'; }
-    })
-    .catch(function(err){
-      console.error(err);
-      gridEl.innerHTML = '<div class=\"card\" style=\"padding:14px\">ডাটা লোড করা যায়নি। নিশ্চিত করুন <code>data.json</code> ফাইলটি একই ফোল্ডারে আছে।</div>';
-    });
-
-})();
+  init();
 </script>
 </body>
 </html>
