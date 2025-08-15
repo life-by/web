@@ -133,4 +133,62 @@ async function fetchProducts() {
   }
 }
 
-function
+function createCard(product) {
+  const card = document.createElement('div');
+  card.className = 'card fade-show';
+  card.innerHTML = `
+    <div class="img-wrap"><img src="${product.image}" alt="${product.name}"></div>
+    <div class="content">
+      <h3>${product.name}</h3>
+      <p class="price">${product.price}৳</p>
+    </div>
+  `;
+  return card;
+}
+
+function updateGrid(products, category='__all') {
+  gridEl.innerHTML='';
+  let filtered = category==='__all' ? products : products.filter(p=>p.category===category);
+  filtered.forEach(p=>{
+    const card = createCard(p);
+    gridEl.appendChild(card);
+  });
+  countBadge.textContent = filtered.length+'টি প্রোডাক্ট';
+}
+
+// Slider images
+function setupSlider(images) {
+  slidesEl.innerHTML='';
+  images.forEach(img=>{
+    const s = document.createElement('div');
+    s.className='slide';
+    s.innerHTML=`<img src="${img}" alt="slider">`;
+    slidesEl.appendChild(s);
+  });
+  let index=0;
+  setInterval(()=> {
+    index=(index+1)%images.length;
+    slidesEl.style.transform='translateX(-'+(index*100)+'%)';
+  },3000);
+}
+
+// Filters
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', async ()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const products = await fetchProducts();
+    const cat = btn.dataset.cat;
+    updateGrid(products, cat);
+  });
+});
+
+// Initial load
+(async function(){
+  const products = await fetchProducts();
+  updateGrid(products);
+  setupSlider(products.slice(0,3).map(p=>p.image));
+})();
+</script>
+</body>
+</html>
