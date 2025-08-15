@@ -124,7 +124,7 @@ hamburger.addEventListener('click', function() {
 // Live JSON fetch (no cache)
 async function fetchProducts() {
   try {
-    const res = await fetch('products.json', {cache:'no-store'});
+    const res = await fetch('data.json', {cache:'no-store'});
     const data = await res.json();
     return data.products || [];
   } catch(err) {
@@ -192,3 +192,4 @@ filterBtns.forEach(btn=>{
 </script>
 </body>
 </html>
+
