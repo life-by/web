@@ -1,10 +1,11 @@
 [
   {
-    "category": "শাড়ি",
-    "name": "শাড়ি",
+    "category": "Three-Piece",
+    "name": "Tangim",
     "price": 2500,
-    "image": "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png",
+    "image": "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
     "description": "",
-    "commissionPassword": "t"
+    "commission": 5,
+    "commissionPassword": "014"
   }
 ]
