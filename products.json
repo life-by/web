@@ -3,7 +3,6 @@
     "id": 1755324385775,
     "name": "থ্রি-পিস মডেল 3",
     "price": 1200,
-    "discount": 300,
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
@@ -15,7 +14,6 @@
     "id": 1755324090288,
     "name": "থ্রি-পিস মডেল 4",
     "price": 900,
-    "discount": 120,
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
@@ -27,7 +25,6 @@
     "id": 1755325159023,
     "name": "থ্রি-পিস মডেল 2",
     "price": 1500,
-    "discount": 250,
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
