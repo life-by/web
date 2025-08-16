@@ -9,5 +9,17 @@
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
     ],
     "videoUrl": "https://youtu.be/atzEZU3kUVo?si=M2fflEnHKCSfDqHb"
+  },
+
+    {
+    "id": 1755321868600,
+    "name": "Rohan",
+    "price": 650,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png"
+    ],
+    "videoUrl": "https://youtu.be/Pxml5Af1o6k?si=BY0XnUaQwIjy4QFJ"
   }
 ]
