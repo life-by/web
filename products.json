@@ -1,40 +1,5 @@
 [
   {
-    "id": 1755324385775,
-    "name": "থ্রি-পিস মডেল 3",
-    "price": 1200,
-    "imageUrls": [
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
-    ],
-    "videoUrl": "https://youtu.be/atzEZU3kUVo?si=M2fflEnHKCSfDqHb"
-  },
-  {
-    "id": 1755324090288,
-    "name": "থ্রি-পিস মডেল 4",
-    "price": 900,
-    "imageUrls": [
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png"
-    ],
-    "videoUrl": "https://youtu.be/atzEZU3kUVo?si=M2fflEnHKCSfDqHb"
-  },
-  {
-    "id": 1755325159023,
-    "name": "থ্রি-পিস মডেল 2",
-    "price": 1500,
-    "imageUrls": [
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png"
-    ],
-    "videoUrl": "https://youtu.be/atzEZU3kUVo?si=M2fflEnHKCSfDqHb"
-  },
-
-  [
-  {
     "id": 1755326448935,
     "name": "থ্রি-পিস মডেল 3",
     "price": 2500,
@@ -46,5 +11,4 @@
     ],
     "videoUrl": ""
   }
-]
 ]
