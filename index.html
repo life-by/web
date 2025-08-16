@@ -72,14 +72,10 @@
                     if (data.length === 0) { productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center;">কোনো পণ্য পাওয়া যায়নি</p>'; return; }
                     
                     data.forEach(product => {
-                        try { // --- নতুন try...catch ব্লক শুরু ---
-                            if (!product || !product.imageUrls || product.imageUrls.length === 0) {
-                                console.warn("Skipping a product due to missing data:", product);
-                                return; // পণ্যটি এড়িয়ে যাও
-                            }
+                        try {
+                            if (!product || !product.imageUrls || product.imageUrls.length === 0) { console.warn("Skipping a product due to missing data:", product); return; }
                             const productElement = document.createElement('div');
                             productElement.className = 'product-card';
-                            
                             let priceHTML = '';
                             let finalPrice = product.price;
                             let discountBadge = '';
@@ -87,9 +83,7 @@
                                 finalPrice = product.price - product.discount;
                                 priceHTML = `<p class="product-price"><span class="original-price">৳ ${product.price}</span><span class="final-price">৳ ${finalPrice}</span></p>`;
                                 discountBadge = `<div class="discount-badge">৳ ${product.discount} ছাড়</div>`;
-                            } else {
-                                priceHTML = `<p class="product-price"><span class="final-price">৳ ${product.price}</span></p>`;
-                            }
+                            } else { priceHTML = `<p class="product-price"><span class="final-price">৳ ${product.price}</span></p>`; }
                             
                             productElement.innerHTML = `
                                 ${discountBadge}
@@ -104,9 +98,7 @@
                                     <button class="details-btn" onclick="showProductDetail(${product.id})">বিস্তারিত দেখুন</button>
                                 </div>`;
                             productsContainer.appendChild(productElement);
-                        } catch (e) { // --- নতুন try...catch ব্লক শেষ ---
-                            console.error("Error rendering a product, skipping it. Product data:", product, "Error:", e);
-                        }
+                        } catch (e) { console.error("Error rendering a product:", product, "Error:", e); }
                     });
                 })
                 .catch(error => { console.error("Error loading products:", error); productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:red;">পণ্য লোড করতে সমস্যা হয়েছে।</p>'; });
