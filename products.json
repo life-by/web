@@ -21,42 +21,5 @@
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png"
     ],
     "videoUrl": "https://youtu.be/Pxml5Af1o6k?si=BY0XnUaQwIjy4QFJ"
-  },
-
-      {
-    "id": 1755321868601,
-    "name": "Tangim",
-    "price": 1250,
-    "imageUrls": [
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png"
-    ],
-    "videoUrl": "https://youtu.be/Pxml5Af1o6k?si=BY0XnUaQwIjy4QFJ"
-  },
-
-
-      {
-    "id": 1755321868602,
-    "name": "Rabita",
-    "price": 950,
-    "imageUrls": [
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png"
-    ],
-    "videoUrl": "https://youtu.be/Pxml5Af1o6k?si=BY0XnUaQwIjy4QFJ"
-  },
-
-      {
-    "id": 1755321868603,
-    "name": "Shoan",
-    "price": 490,
-    "imageUrls": [
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download5.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download5.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download5.png"
-    ],
-    "videoUrl": "https://youtu.be/Pxml5Af1o6k?si=BY0XnUaQwIjy4QFJ"
   }
 ]
