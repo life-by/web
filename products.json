@@ -31,5 +31,20 @@
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png"
     ],
     "videoUrl": "https://youtu.be/atzEZU3kUVo?si=M2fflEnHKCSfDqHb"
+  },
+
+  [
+  {
+    "id": 1755326448935,
+    "name": "থ্রি-পিস মডেল 3",
+    "price": 2500,
+    "discount": 2,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
+    ],
+    "videoUrl": ""
   }
+]
 ]
