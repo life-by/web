@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -11,171 +10,14 @@
         header { background-color: #8e44ad; color: white; text-align: center; padding: 1.5rem 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
         .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-        .product-card:hover { transform: translateY(-5px); }
-        
-        /* --- প্রোডাক্ট কার্ডের ছবিতে বর্ডার যোগ করা হয়েছে --- */
-        .product-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            cursor: pointer;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .product-info { padding: 1.2rem; }
-        .product-title { font-size: 1.2rem; margin-bottom: 0.5rem; color: #333; }
-        .product-price { font-size: 1.3rem; font-weight: bold; color: #8e44ad; margin-bottom: 1rem; }
-        .whatsapp-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #25D366; color: white; text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 4px; font-weight: bold; transition: background-color 0.3s; width: 100%; }
-        .whatsapp-btn:hover { background-color: #128C7E; }
-        .details-btn { display: block; background-color: #8e44ad; color: white; text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 4px; font-weight: bold; text-align: center; margin-top: 0.5rem; width: 100%; border: none; cursor: pointer; }
-        .details-btn:hover { background-color: #732d91; }
-        .whatsapp-icon { margin-right: 8px; width: 18px; height: 18px; }
-        footer { text-align: center; padding: 2rem 0; margin-top: 2rem; background-color: #333; color: white; }
-        .product-detail { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto; padding: 20px; }
-        .detail-container { background-color: white; max-width: 800px; margin: 20px auto; padding: 20px; border-radius: 8px; position: relative; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 30px; font-weight: bold; cursor: pointer; color: #333; }
-        .product-gallery { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
-        
-        /* --- গ্যালারির ছবির জন্য CSS পরিবর্তন করা হয়েছে --- */
-        .gallery-image {
-            width: calc(33.333% - 10px);
-            height: 180px;
-            object-fit: contain; /* 'cover' থেকে 'contain' করা হয়েছে */
-            cursor: pointer;
-            border-radius: 4px;
-            transition: transform 0.3s;
-            border: 2px solid #eee; /* বর্ডার যোগ করা হয়েছে */
-            background-color: #fdfdfd; /* ছবির ব্যাকগ্রাউন্ডে হালকা রঙ */
-        }
-        .gallery-image:hover {
-            transform: scale(1.05);
-            border-color: #8e44ad;
-        }
-        
-        .product-video-container { margin: 20px 0; }
-        .product-video { width: 100%; aspect-ratio: 16/9; border-radius: 4px; }
-        
-        .lightbox { display: none; position: fixed; z-index: 2000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; }
-        .lightbox-content { margin: auto; display: block; max-width: 90%; max-height: 85vh; border: 3px solid white; border-radius: 5px; }
-        .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
-        .lightbox-close:hover, .lightbox-close:focus { color: #bbb; text-decoration: none; cursor: pointer; }
-
-        @media (max-width: 768px) { .products { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); } .gallery-image { width: calc(50% - 10px); } }
-        @media (max-width: 480px) { .products { grid-template-columns: 1fr; } .product-image { height: 250px; } .gallery-image { width: 100%; } }
-    </style>
-</head>
-<body>
-    <header><h1>আমার ফ্যাশন বুটিক</h1><p>শাড়ি, চুরি, থ্রি পিস ও অন্যান্য পণ্য</p></header>
-    <div class="container"><div class="products" id="productsContainer"></div></div>
-    <div id="productDetail" class="product-detail"><div class="detail-container"><span class="close-btn" id="closeDetail">&times;</span><div id="detailContent"></div></div></div>
-    
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightboxImg">
-    </div>
-    
-    <footer><p>© 2023 আমার ফ্যাশন বুটিক। সকল স্বত্ব সংরক্ষিত।</p></footer>
-
-    <script>
-        const productsContainer = document.getElementById('productsContainer');
-        const productDetail = document.getElementById('productDetail');
-        const detailContent = document.getElementById('detailContent');
-        const closeDetail = document.getElementById('closeDetail');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.querySelector('.lightbox-close');
-        let allProducts = [];
-
-        closeDetail.addEventListener('click', () => { productDetail.style.display = 'none'; });
-        window.addEventListener('load', loadProducts);
-
-        function openLightbox(imageUrl) {
-            lightboxImg.src = imageUrl;
-            lightbox.style.display = 'flex';
-        }
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-        }
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', function(e) { if (e.target === lightbox) { closeLightbox(); } });
-
-        function loadProducts() {
-            const jsonUrl = 'https://raw.githubusercontent.com/life-by/web/refs/heads/main/products.json';
-            fetch(jsonUrl + '?t=' + new Date().getTime())
-                .then(response => { if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`); } return response.json(); })
-                .then(data => {
-                    allProducts = data;
-                    productsContainer.innerHTML = '';
-                    if (!data || data.length === 0) { productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center;">কোনো পণ্য পাওয়া যায়নি</p>'; return; }
-                    data.forEach(product => {
-                        if (!product.imageUrls || product.imageUrls.length === 0) { return; }
-                        const productElement = document.createElement('div');
-                        productElement.className = 'product-card';
-                        productElement.innerHTML = `
-                            <img src="${product.imageUrls[0]}" alt="${product.name}" class="product-image" onclick="showProductDetail(${product.id})">
-                            <div class="product-info">
-                                <h3 class="product-title">${product.name}</h3>
-                                <p class="product-price">৳ ${product.price}</p>
-                                <a href="https://wa.me/+8801401615822?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${product.price})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank">
-                                    <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>
-                                    WhatsApp এ অর্ডার করুন
-                                </a>
-                                <button class="details-btn" onclick="showProductDetail(${product.id})">বিস্তারিত দেখুন</button>
-                            </div>`;
-                        productsContainer.appendChild(productElement);
-                    });
-                })
-                .catch(error => { console.error("Error loading products:", error); productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:red;">পণ্য লোড করতে সমস্যা হয়েছে।</p>'; });
-        }
-        
-        window.showProductDetail = function(productId) {
-            const product = allProducts.find(p => p.id === productId);
-            if (!product) { alert("পণ্যটি খুঁজে পাওয়া যায়নি।"); return; }
-            let videoEmbed = '';
-            if (product.videoUrl) {
-                let videoId;
-                if (product.videoUrl.includes('youtube.com') || product.videoUrl.includes('youtu.be')) {
-                    const match = product.videoUrl.match(/(?:v=|\/embed\/|\.be\/)([\w-]{11})/);
-                    videoId = match ? match[1] : null;
-                    if(videoId) videoEmbed = `<div class="product-video-container"><h3>ভিডিও</h3><iframe class="product-video" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div>`;
-                }
-                if (!videoEmbed) { videoEmbed = `<div class="product-video-container"><h3>ভিডিও</h3><a href="${product.videoUrl}" target="_blank" class="details-btn" style="width: auto;">ভিডিও দেখুন</a></div>`; }
-            }
-            const galleryImages = product.imageUrls.map(url => `<img src="${url}" class="gallery-image" onclick="openLightbox('${url}')">`).join('');
-            detailContent.innerHTML = `<h2>${product.name}</h2><p class="product-price">৳ ${product.price}</p><div class="product-gallery">${galleryImages}</div>${videoEmbed}<a href="https://wa.me/yourphonenumber?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${product.price})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank" style="display: inline-flex; margin-top: 20px; width: auto; padding: 10px 20px;"><svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>WhatsApp এ অর্ডার করুন</a>`;
-            productDetail.style.display = 'block';
-        };
-    </script>
-</body>
-</html>
-
--->
-
-
-
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আমার ফ্যাশন বুটিক</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f9f9f9; color: #333; line-height: 1.6; }
-        header { background-color: #8e44ad; color: white; text-align: center; padding: 1.5rem 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
-        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease; position: relative; /* ব্যাজের জন্য দরকার */ }
+        .product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease; position: relative; }
         .product-card:hover { transform: translateY(-5px); }
         .product-image { width: 100%; height: 300px; object-fit: cover; cursor: pointer; border-bottom: 1px solid #f0f0f0; }
         .product-info { padding: 1.2rem; }
         .product-title { font-size: 1.2rem; margin-bottom: 0.5rem; color: #333; }
-        /* --- দামের স্টাইল পরিবর্তন --- */
         .product-price { font-size: 1.3rem; font-weight: bold; color: #333; margin-bottom: 1rem; }
         .product-price .original-price { text-decoration: line-through; color: #999; font-size: 1rem; margin-right: 8px; }
         .product-price .final-price { color: #8e44ad; }
-        /* --- নতুন ছাড় ব্যাজের স্টাইল --- */
         .discount-badge { position: absolute; top: 10px; left: 10px; background-color: #e74c3c; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
         .whatsapp-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #25D366; color: white; text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 4px; font-weight: bold; transition: background-color 0.3s; width: 100%; }
         .whatsapp-btn:hover { background-color: #128C7E; }
@@ -218,44 +60,53 @@
         function closeLightbox() { lightbox.style.display = 'none'; }
         document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', function(e) { if (e.target === lightbox) { closeLightbox(); } });
+        
         function loadProducts() {
             const jsonUrl = 'https://raw.githubusercontent.com/life-by/web/refs/heads/main/products.json';
             fetch(jsonUrl + '?t=' + new Date().getTime())
                 .then(response => { if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`); } return response.json(); })
                 .then(data => {
+                    if (!Array.isArray(data)) { throw new Error("JSON data is not an array."); }
                     allProducts = data;
                     productsContainer.innerHTML = '';
-                    if (!data || data.length === 0) { productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center;">কোনো পণ্য পাওয়া যায়নি</p>'; return; }
+                    if (data.length === 0) { productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center;">কোনো পণ্য পাওয়া যায়নি</p>'; return; }
+                    
                     data.forEach(product => {
-                        if (!product.imageUrls || product.imageUrls.length === 0) { return; }
-                        const productElement = document.createElement('div');
-                        productElement.className = 'product-card';
-                        
-                        // --- দাম এবং ছাড়ের লজিক ---
-                        let priceHTML = '';
-                        let finalPrice = product.price;
-                        let discountBadge = '';
-                        if (product.discount && product.discount > 0) {
-                            finalPrice = product.price - product.discount;
-                            priceHTML = `<p class="product-price"><span class="original-price">৳ ${product.price}</span><span class="final-price">৳ ${finalPrice}</span></p>`;
-                            discountBadge = `<div class="discount-badge">৳ ${product.discount} ছাড়</div>`;
-                        } else {
-                            priceHTML = `<p class="product-price"><span class="final-price">৳ ${product.price}</span></p>`;
+                        try { // --- নতুন try...catch ব্লক শুরু ---
+                            if (!product || !product.imageUrls || product.imageUrls.length === 0) {
+                                console.warn("Skipping a product due to missing data:", product);
+                                return; // পণ্যটি এড়িয়ে যাও
+                            }
+                            const productElement = document.createElement('div');
+                            productElement.className = 'product-card';
+                            
+                            let priceHTML = '';
+                            let finalPrice = product.price;
+                            let discountBadge = '';
+                            if (product.discount && product.discount > 0) {
+                                finalPrice = product.price - product.discount;
+                                priceHTML = `<p class="product-price"><span class="original-price">৳ ${product.price}</span><span class="final-price">৳ ${finalPrice}</span></p>`;
+                                discountBadge = `<div class="discount-badge">৳ ${product.discount} ছাড়</div>`;
+                            } else {
+                                priceHTML = `<p class="product-price"><span class="final-price">৳ ${product.price}</span></p>`;
+                            }
+                            
+                            productElement.innerHTML = `
+                                ${discountBadge}
+                                <img src="${product.imageUrls[0]}" alt="${product.name}" class="product-image" onclick="showProductDetail(${product.id})">
+                                <div class="product-info">
+                                    <h3 class="product-title">${product.name}</h3>
+                                    ${priceHTML}
+                                    <a href="https://wa.me/yourphonenumber?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${finalPrice})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank">
+                                        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>
+                                        WhatsApp এ অর্ডার করুন
+                                    </a>
+                                    <button class="details-btn" onclick="showProductDetail(${product.id})">বিস্তারিত দেখুন</button>
+                                </div>`;
+                            productsContainer.appendChild(productElement);
+                        } catch (e) { // --- নতুন try...catch ব্লক শেষ ---
+                            console.error("Error rendering a product, skipping it. Product data:", product, "Error:", e);
                         }
-                        
-                        productElement.innerHTML = `
-                            ${discountBadge}
-                            <img src="${product.imageUrls[0]}" alt="${product.name}" class="product-image" onclick="showProductDetail(${product.id})">
-                            <div class="product-info">
-                                <h3 class="product-title">${product.name}</h3>
-                                ${priceHTML}
-                                <a href="https://wa.me/yourphonenumber?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${finalPrice})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank">
-                                    <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>
-                                    WhatsApp এ অর্ডার করুন
-                                </a>
-                                <button class="details-btn" onclick="showProductDetail(${product.id})">বিস্তারিত দেখুন</button>
-                            </div>`;
-                        productsContainer.appendChild(productElement);
                     });
                 })
                 .catch(error => { console.error("Error loading products:", error); productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:red;">পণ্য লোড করতে সমস্যা হয়েছে।</p>'; });
@@ -266,17 +117,12 @@
             let videoEmbed = '';
             if (product.videoUrl) { let videoId; if (product.videoUrl.includes('youtube.com') || product.videoUrl.includes('youtu.be')) { const match = product.videoUrl.match(/(?:v=|\/embed\/|\.be\/)([\w-]{11})/); videoId = match ? match[1] : null; if(videoId) videoEmbed = `<div class="product-video-container"><h3>ভিডিও</h3><iframe class="product-video" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div>`; } if (!videoEmbed) { videoEmbed = `<div class="product-video-container"><h3>ভিডিও</h3><a href="${product.videoUrl}" target="_blank" class="details-btn" style="width: auto;">ভিডিও দেখুন</a></div>`; } }
             const galleryImages = product.imageUrls.map(url => `<img src="${url}" class="gallery-image" onclick="openLightbox('${url}')">`).join('');
-            
-            // --- ডিটেইলস ভিউতে দাম এবং ছাড়ের লজিক ---
             let priceHTML = '';
             let finalPrice = product.price;
             if (product.discount && product.discount > 0) {
                 finalPrice = product.price - product.discount;
                 priceHTML = `<p class="product-price" style="font-size: 1.5rem;"><span class="original-price">৳ ${product.price}</span><span class="final-price">৳ ${finalPrice}</span></p>`;
-            } else {
-                priceHTML = `<p class="product-price" style="font-size: 1.5rem;"><span class="final-price">৳ ${product.price}</span></p>`;
-            }
-
+            } else { priceHTML = `<p class="product-price" style="font-size: 1.5rem;"><span class="final-price">৳ ${product.price}</span></p>`; }
             detailContent.innerHTML = `<h2>${product.name}</h2>${priceHTML}<div class="product-gallery">${galleryImages}</div>${videoEmbed}<a href="https://wa.me/yourphonenumber?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${finalPrice})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank" style="display: inline-flex; margin-top: 20px; width: auto; padding: 10px 20px;"><svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>WhatsApp এ অর্ডার করুন</a>`;
             productDetail.style.display = 'block';
         };
