@@ -1,1 +1,35 @@
-
+[
+  {
+    "id": 1,
+    "name": "নীল জামদানি শাড়ি",
+    "price": "2500",
+    "imageUrls": [
+      "https://i.ibb.co/k3y7Bqg/saree-1.jpg",
+      "https://i.ibb.co/xJ5fCqW/saree-2.jpg",
+      "https://i.ibb.co/d2N8pRF/saree-3.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    "id": 2,
+    "name": "লাল এবং সাদা থ্রি-পিস",
+    "price": "1850",
+    "imageUrls": [
+      "https://i.ibb.co/yQzH2Jj/three-piece-1.jpg",
+      "https://i.ibb.co/gZ7kCjL/three-piece-2.jpg",
+      "https://i.ibb.co/St9k7zW/three-piece-3.jpg"
+    ],
+    "videoUrl": ""
+  },
+  {
+    "id": 3,
+    "name": "গোল্ডেন চুড়ি সেট",
+    "price": "750",
+    "imageUrls": [
+      "https://i.ibb.co/L8yN5F7/churi-1.jpg",
+      "https://i.ibb.co/2Z5Xy4z/churi-2.jpg",
+      "https://i.ibb.co/1q2yYkG/churi-3.jpg"
+    ],
+    "videoUrl": ""
+  }
+]
