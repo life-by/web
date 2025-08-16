@@ -11,5 +11,18 @@
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
     ],
     "videoUrl": "https://youtu.be/atzEZU3kUVo?si=M2fflEnHKCSfDqHb"
+  },
+
+    {
+    "id": 1755324090288,
+    "name": "থ্রি-পিস মডেল 4",
+    "price": 900,
+    "discount": 120,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png"
+    ],
+    "videoUrl": "https://youtu.be/atzEZU3kUVo?si=M2fflEnHKCSfDqHb"
   }
 ]
