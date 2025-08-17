@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -26,6 +25,8 @@
         .product-info { padding: 1.2rem; }
         .product-title { font-size: 1.2rem; margin-bottom: 0.5rem; color: #333; }
         .product-price { font-size: 1.3rem; font-weight: bold; color: #8e44ad; margin-bottom: 1rem; }
+        .product-price .original-price { text-decoration: line-through; color: #999; font-size: 1rem; margin-right: 8px; }
+        .product-price .discount { color: #e74c3c; font-size: 1rem; margin-left: 8px; }
         .whatsapp-btn { display: inline-flex; align-items: center; justify-content: center; background-color: #25D366; color: white; text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 4px; font-weight: bold; transition: background-color 0.3s; width: 100%; }
         .whatsapp-btn:hover { background-color: #128C7E; }
         .details-btn { display: block; background-color: #8e44ad; color: white; text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 4px; font-weight: bold; text-align: center; margin-top: 0.5rem; width: 100%; border: none; cursor: pointer; }
@@ -112,11 +113,23 @@
                         if (!product.imageUrls || product.imageUrls.length === 0) { return; }
                         const productElement = document.createElement('div');
                         productElement.className = 'product-card';
+                        
+                        // Calculate discounted price if discount exists
+                        let priceHtml = `৳ ${product.price}`;
+                        if (product.discount && product.discount > 0) {
+                            const discountedPrice = product.price - (product.price * product.discount / 100);
+                            priceHtml = `
+                                <span class="original-price">৳ ${product.price}</span>
+                                ৳ ${discountedPrice.toFixed(0)}
+                                <span class="discount">${product.discount}% ছাড়</span>
+                            `;
+                        }
+                        
                         productElement.innerHTML = `
                             <img src="${product.imageUrls[0]}" alt="${product.name}" class="product-image" onclick="showProductDetail(${product.id})">
                             <div class="product-info">
                                 <h3 class="product-title">${product.name}</h3>
-                                <p class="product-price">৳ ${product.price}</p>
+                                <p class="product-price">${priceHtml}</p>
                                 <a href="https://wa.me/+8801401615822?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${product.price})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank">
                                     <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>
                                     WhatsApp এ অর্ডার করুন
@@ -142,11 +155,22 @@
                 }
                 if (!videoEmbed) { videoEmbed = `<div class="product-video-container"><h3>ভিডিও</h3><a href="${product.videoUrl}" target="_blank" class="details-btn" style="width: auto;">ভিডিও দেখুন</a></div>`; }
             }
+            
+            // Calculate discounted price for detail view
+            let priceHtml = `৳ ${product.price}`;
+            if (product.discount && product.discount > 0) {
+                const discountedPrice = product.price - (product.price * product.discount / 100);
+                priceHtml = `
+                    <span class="original-price">৳ ${product.price}</span>
+                    ৳ ${discountedPrice.toFixed(0)}
+                    <span class="discount">${product.discount}% ছাড়</span>
+                `;
+            }
+            
             const galleryImages = product.imageUrls.map(url => `<img src="${url}" class="gallery-image" onclick="openLightbox('${url}')">`).join('');
-            detailContent.innerHTML = `<h2>${product.name}</h2><p class="product-price">৳ ${product.price}</p><div class="product-gallery">${galleryImages}</div>${videoEmbed}<a href="https://wa.me/yourphonenumber?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${product.price})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank" style="display: inline-flex; margin-top: 20px; width: auto; padding: 10px 20px;"><svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>WhatsApp এ অর্ডার করুন</a>`;
+            detailContent.innerHTML = `<h2>${product.name}</h2><p class="product-price">${priceHtml}</p><div class="product-gallery">${galleryImages}</div>${videoEmbed}<a href="https://wa.me/yourphonenumber?text=আমি%20${encodeURIComponent(product.name)}%20(৳%20${product.price})%20কিনতে%20চাই" class="whatsapp-btn" target="_blank" style="display: inline-flex; margin-top: 20px; width: auto; padding: 10px 20px;"><svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.77 3.09 1.23 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zM12.04 20.15c-1.6 0-3.14-.44-4.48-1.25l-.32-.19-3.32.87.89-3.24-.21-.34c-.87-1.4-1.35-3.04-1.35-4.78 0-4.4 3.58-7.98 7.98-7.98s7.98 3.58 7.98 7.98-3.58 7.98-7.98 7.98zm4.49-6.19c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.28.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75 2.49 1.08.59.88.81 1.02.22.14.7.6.81.72.11.12.11.19.04.31-.08.12-.25-.19-.53.06z"/></svg>WhatsApp এ অর্ডার করুন</a>`;
             productDetail.style.display = 'block';
         };
     </script>
 </body>
 </html>
-
