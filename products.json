@@ -10,5 +10,38 @@
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
     ],
     "videoUrl": ""
+  },
+  {
+    "id": 1755443600303,
+    "name": "থ্রি-পিস মডেল 1",
+    "price": 950,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png"
+    ],
+    "videoUrl": ""
+  },
+  {
+    "id": 1755443650886,
+    "name": "থ্রি-পিস মডেল 2",
+    "price": 1500,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png"
+    ],
+    "videoUrl": ""
+  },
+  {
+    "id": 1755443726854,
+    "name": "থ্রি-পিস মডেল 4",
+    "price": 950,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png"
+    ],
+    "videoUrl": ""
   }
 ]
