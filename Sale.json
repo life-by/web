@@ -1,1 +1,19 @@
 
+{
+  "products": [
+    {
+      "id": "P001",
+      "name": "শাড়ি",
+      "price": 2500,
+      "stock": 50
+    }
+  ],
+  "sales": [
+    {
+      "id": "S001",
+      "productId": "P001",
+      "quantity": 5,
+      "date": "2025-08-17"
+    }
+  ]
+}
