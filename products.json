@@ -1,18 +1,6 @@
 [
   {
-    "id": 1755326448935,
-    "name": "থ্রি-পিস মডেল 3",
-    "price": 2500,
-    "discount": 5,
-    "imageUrls": [
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
-      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
-    ],
-    "videoUrl": ""
-  },
-  {
-    "id": 1755443600303,
+    "id": 1755446938790,
     "name": "থ্রি-পিস মডেল 1",
     "price": 950,
     "discount": 5,
@@ -24,10 +12,22 @@
     "videoUrl": ""
   },
   {
-    "id": 1755443650886,
+    "id": 1755446981862,
     "name": "থ্রি-পিস মডেল 2",
-    "price": 1500,
+    "price": 1260,
     "discount": 5,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
+    ],
+    "videoUrl": ""
+  },
+  {
+    "id": 1755447049774,
+    "name": "থ্রি-পিস মডেল 3",
+    "price": 920,
+    "discount": 3,
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download2.png",
@@ -36,10 +36,22 @@
     "videoUrl": ""
   },
   {
-    "id": 1755443726854,
+    "id": 1755447080310,
     "name": "থ্রি-পিস মডেল 4",
-    "price": 950,
-    "discount": 5,
+    "price": 1620,
+    "discount": 7,
+    "imageUrls": [
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
+      "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png"
+    ],
+    "videoUrl": ""
+  },
+  {
+    "id": 1755447123230,
+    "name": "থ্রি-পিস মডেল 5",
+    "price": 1366,
+    "discount": 4,
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
