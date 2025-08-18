@@ -1,14 +1,20 @@
 [
   {
     "name": "শারি",
-    "stock": 15,
-    "sold": 5,
+    "stock": 12,
+    "sold": 2,
     "price": 250
   },
   {
     "name": "থ্রি পিস মডেল 1",
     "stock": 6,
     "sold": 1,
+    "price": 530
+  },
+  {
+    "name": "থ্রি পিস মডেল 1",
+    "stock": 50,
+    "sold": 30,
     "price": 530
   }
 ]
