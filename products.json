@@ -17,12 +17,13 @@
     "name": "থ্রি-পিস মডেল 2",
     "price": 1260,
     "discount": 5,
+    "category": "থ্রি-পিস রেডিমেড",
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
     ],
-    "videoUrl": ""
+    "videoUrl": null
   },
   {
     "id": 1755447049774,
