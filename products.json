@@ -4,6 +4,7 @@
     "name": "থ্রি-পিস মডেল 1",
     "price": 950,
     "discount": 5,
+    "category": "শাড়ি",
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download.png",
@@ -16,12 +17,13 @@
     "name": "থ্রি-পিস মডেল 2",
     "price": 1260,
     "discount": 5,
+    "category": "থ্রি-পিস রেডিমেড",
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download1.png"
     ],
-    "videoUrl": ""
+    "videoUrl": null
   },
   {
     "id": 1755447049774,
@@ -41,12 +43,13 @@
     "name": "থ্রি-পিস মডেল 4",
     "price": 1620,
     "discount": 7,
+    "category": "অন্যান্য",
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download3.png"
     ],
-    "videoUrl": ""
+    "videoUrl": null
   },
   {
     "id": 1755447123230,
