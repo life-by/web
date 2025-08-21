@@ -54,11 +54,12 @@
     "name": "থ্রি-পিস মডেল 5",
     "price": 1366,
     "discount": 4,
+    "category": "থ্রি-পিস নন রেডিমেড",
     "imageUrls": [
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png",
       "https://raw.githubusercontent.com/life-by/web/refs/heads/main/Photo/download4.png"
     ],
-    "videoUrl": ""
+    "videoUrl": null
   }
 ]
